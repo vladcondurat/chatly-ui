@@ -1,0 +1,9 @@
+export const AUTH__SET_STATE = '[AUTH] SET_STATE';
+export const AUTH__SET_TOKEN = '[AUTH] SET_TOKEN';
+export const AUTH__SET_REFRESH_TOKEN = '[AUTH] SET_REFRESH_TOKEN';
+export const AUTH__SET_LOADING = '[AUTH] SET_LOADING';
+export const AUTH__SET_LOGIN_ERROR = '[AUTH] SET_LOGIN_ERROR';
+export const AUTH__LOGIN = '[AUTH] LOGIN';
+export const AUTH__LOGOUT = '[AUTH] LOGOUT';
+export const AUTH__REFRESH = '[AUTH] REFRESH';
+export const AUTH__RESET_DATA = '[AUTH] RESET_DATA';
