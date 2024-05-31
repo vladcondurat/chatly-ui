@@ -6,23 +6,10 @@ const ChatsBar = () => (
   <CBContainer>
     <SearchBar />
     <CBCellWrapper>
-      <ChatCell />
-      <ChatCell />
-      <ChatCell />
-      <ChatCell />
-      <ChatCell />
-      <ChatCell />
-      <ChatCell />
-      <ChatCell />
-      <ChatCell />
-      <ChatCell />
-      <ChatCell />
-      <ChatCell />
-      <ChatCell />
-      <ChatCell />
-      <ChatCell />
-      <ChatCell />
-      <ChatCell />
+      <ChatCell id="1" />
+      <ChatCell id="2" />
+      <ChatCell id="3" />
+      <ChatCell id="4" />
     </CBCellWrapper>
   </CBContainer>
 );

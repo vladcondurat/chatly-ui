@@ -14,25 +14,6 @@ export const RPTitleWrapper = styled.div`
   font-weight: 300;
 `;
 
-export const RPFormsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-`;
-
-export const RPRegisterButton = styled.button`
-  background-color: #1141fb;
-  height: 40px;
-  color: white;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-
-  &:hover {
-    background-color: #0d36d9;
-  }
-`;
-
 export const RPTextWrapper = styled.div`
   font-size: 12px;
   color: white;
@@ -54,7 +35,7 @@ export const RPTextContainer = styled.div`
   gap: 2px;
 `;
 
-export const RPButtonWrapper = styled.div`
+export const RPFormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;

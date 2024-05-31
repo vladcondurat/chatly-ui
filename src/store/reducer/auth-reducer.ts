@@ -4,7 +4,6 @@ import { setStateAuthAction, setTokenAuthAction, setLoadingAuthAction, setLoginE
 
 const initialState: IAuthState = {
   token: null,
-  refreshToken: null,
   state: false,
   loading: false,
   loginError: false,

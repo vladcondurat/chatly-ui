@@ -6,10 +6,21 @@ export const IFContainer = styled.div`
   gap: 2px;
 `;
 
+export const IFTitleContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding-left: 2px;
+`;
+
+export const IFErrorWrapper = styled.div`
+  color: red;
+  font-size: 12px;
+`;
+
 export const IFTextWrapper = styled.div`
   font-size: 12px;
   color: white;
-  padding-left: 2px;
 `;
 
 export const IFField = styled.input`

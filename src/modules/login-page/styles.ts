@@ -14,25 +14,6 @@ export const LPTitleWrapper = styled.div`
   font-weight: 300;
 `;
 
-export const LPFormsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-`;
-
-export const LPLoginButton = styled.button`
-  background-color: #1141fb;
-  height: 40px;
-  color: white;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-
-  &:hover {
-    background-color: #0d36d9;
-  }
-`;
-
 export const LPTextWrapper = styled.div`
   font-size: 12px;
   color: white;
@@ -53,7 +34,7 @@ export const LPTextContainer = styled.div`
   gap: 2px;
 `;
 
-export const LPButtonWrapper = styled.div`
+export const LPFormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;

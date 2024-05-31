@@ -7,3 +7,8 @@ export const AUTH__LOGIN = '[AUTH] LOGIN';
 export const AUTH__LOGOUT = '[AUTH] LOGOUT';
 export const AUTH__REFRESH = '[AUTH] REFRESH';
 export const AUTH__RESET_DATA = '[AUTH] RESET_DATA';
+
+export const ACCOUNT_GET = '[ACCOUNT] GET';
+export const ACCOUNT_FETCH = '[ACCOUNT] FETCH';
+export const ACCOUNT_SET_DATA = '[ACCOUNT] SET_DATA';
+export const ACCOUNT__SET_LOADING = '[ACCOUNT] SET_LOADING';
