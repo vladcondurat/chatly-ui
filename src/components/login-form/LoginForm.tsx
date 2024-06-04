@@ -1,8 +1,13 @@
 import InputForm from '../input-form';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LFWrapper, LFButton, LFInputWrapper } from './styles';
+import { useAppDispatch, useAppSelector } from '../../hooks/store-hooks';
+import { loginAuthActionAsync } from '../../store/actions/auth-actions';
+import { isLoggedInAuthSelector, loginErrorAuthSelector } from '../../store/selectors/auth-selectors';
+import { useNavigate } from 'react-router-dom';
 
 const schema = z.object({
   username: z.string().min(3).max(20),
@@ -19,16 +24,24 @@ const LoginForm = () => {
     formState: { errors, isSubmitting },
   } = useForm<FormFields>({ resolver: zodResolver(schema) });
 
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const isLoginError = useAppSelector(loginErrorAuthSelector);
+  const isAuth = useAppSelector(isLoggedInAuthSelector);
+
   const onSubmit: SubmitHandler<FormFields> = async data => {
-    try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      console.log(data);
-    } catch (error) {
-      setError('root', {
-        message: 'This email is already taken',
-      });
+    await dispatch(loginAuthActionAsync({ username: data.username, password: data.password }));
+    // setError('username', { message: response.payload as string });
+    if (isLoginError) {
+      setError('username', { message: 'Invalid username or password' });
     }
   };
+
+  useEffect(() => {
+    if (isAuth) {
+      navigate('/');
+    }
+  }, [isAuth, navigate]);
 
   return (
     <LFWrapper onSubmit={handleSubmit(onSubmit)}>

@@ -6,7 +6,7 @@ const ChatCell = ({ id }: { id: string }) => {
   const navigate = useNavigate();
 
   return (
-    <CCContainer onClick={() => navigate(`/${id}`)}>
+    <CCContainer onClick={() => navigate(`/rooms/${id}`)}>
       <CCDetailsWrapper>
         <CCImage src={avatarImg} />
         <CCTextWrapper>

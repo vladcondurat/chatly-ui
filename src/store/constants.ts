@@ -1,14 +1,11 @@
 export const AUTH__SET_STATE = '[AUTH] SET_STATE';
 export const AUTH__SET_TOKEN = '[AUTH] SET_TOKEN';
-export const AUTH__SET_REFRESH_TOKEN = '[AUTH] SET_REFRESH_TOKEN';
 export const AUTH__SET_LOADING = '[AUTH] SET_LOADING';
 export const AUTH__SET_LOGIN_ERROR = '[AUTH] SET_LOGIN_ERROR';
 export const AUTH__LOGIN = '[AUTH] LOGIN';
 export const AUTH__LOGOUT = '[AUTH] LOGOUT';
-export const AUTH__REFRESH = '[AUTH] REFRESH';
 export const AUTH__RESET_DATA = '[AUTH] RESET_DATA';
 
-export const ACCOUNT_GET = '[ACCOUNT] GET';
-export const ACCOUNT_FETCH = '[ACCOUNT] FETCH';
-export const ACCOUNT_SET_DATA = '[ACCOUNT] SET_DATA';
-export const ACCOUNT__SET_LOADING = '[ACCOUNT] SET_LOADING';
+export const USER_FETCH = '[USER] FETCH';
+export const USER_SET_DATA = '[USER] SET_DATA';
+export const USER__SET_LOADING = '[USER] SET_LOADING';

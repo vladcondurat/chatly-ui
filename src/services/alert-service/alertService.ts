@@ -1,63 +1,76 @@
-type AlertOptions = {
-  icon?: string;
-  title: string;
-  description?: string;
-  duration?: number;
-};
+import Swal from 'sweetalert2';
+import { IAlertOptions } from './types';
 
 const alertService = {
-  successAlert: (opt: AlertOptions) => {
-    const options = { ...opt, icon: 'success' };
-    showAlert(options);
-  },
-  errorAlert: (opt: AlertOptions) => {
-    const options = { ...opt, icon: 'error' };
-    showAlert(options);
-  },
-};
+  showAlert: (opt: IAlertOptions) => {
+    const { icon, title, description, duration } = opt;
 
-function showAlert(opt: AlertOptions) {
-  const { icon, title, description, duration } = opt;
+    const titleStyle = `
+      font-family: 'Inter', sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      color: #ffffff;
+      margin-bottom: 20px;
+    `;
 
-  const iconColors: { [key: string]: string } = {
-    error: 'red',
-    success: 'green',
-    warning: 'yellow',
-  };
+    const descriptionStyle = `
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      font-weight: 400;
+      color: #ffffff;
+    `;
 
-  const iconElement = icon ? `<div style="color: ${iconColors[icon]};">${icon}</div>` : '';
+    let iconColor = '';
 
-  const alertMessage = `
-    <div style="font-size: 16px;">
-      ${iconElement}
-      <h2>${title}</h2>
-      <p>${description || ''}</p>
-    </div>
-  `;
+    switch (icon) {
+      case 'error':
+        iconColor = '#ff4d4f'; // errorRed
+        break;
 
-  console.log(alertMessage);
-  if (duration) {
+      case 'success':
+        iconColor = '#52c41a'; // acceptGreen
+        break;
+
+      case 'warning':
+        iconColor = '#faad14'; // pendingYellow
+        break;
+
+      default:
+        break;
+    }
+
+    Swal.fire({
+      html: `
+        <h2 style="${titleStyle}">${title}</h2>
+        <p style="${descriptionStyle}">${description || ''}</p>
+      `,
+      icon,
+      iconColor,
+      showConfirmButton: !duration,
+      timer: duration || 0,
+      color: '#ffffff', // textPrimary
+      background: '#393d47', // popupBackground
+    });
+
+    document.body.style.paddingRight = '0px';
     setTimeout(() => {
-      console.log('Removing body styles...');
       document.body.removeAttribute('style');
       document.body.style.overflowX = 'hidden';
       document.body.style.overflowY = 'scroll';
-    }, duration);
-  }
-}
+    }, duration || 1500);
+  },
 
-// Define generic error and success options
-const genericErrorOptions: AlertOptions = {
-  title: 'Error',
-  description: 'An error occurred.',
-  duration: 5000, // 5 seconds
-};
+  successAlert: (opt: Omit<IAlertOptions, 'icon'>) => {
+    alertService.showAlert({ ...opt, icon: 'success' });
+  },
 
-const genericSuccessOptions: AlertOptions = {
-  title: 'Success',
-  description: 'Operation successful.',
-  duration: 3000, // 3 seconds
+  errorAlert: (opt: Omit<IAlertOptions, 'icon'>) => {
+    alertService.showAlert({ ...opt, icon: 'error' });
+  },
+
+  warningAlert: (opt: Omit<IAlertOptions, 'icon'>) => {
+    alertService.showAlert({ ...opt, icon: 'warning' });
+  },
 };
 
 export default alertService;
-export { genericErrorOptions, genericSuccessOptions };

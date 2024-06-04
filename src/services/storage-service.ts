@@ -1,9 +1,9 @@
 import Cookies from 'js-cookie';
 
-export const TOKEN_AUTH = 'access-token';
+export const AUTH_TOKEN = 'access-token';
 
 export function setToken(cookie: string, token: string) {
-  Cookies.set(cookie, token, { expires: 3 });
+  Cookies.set(cookie, token, { expires: 3, secure: true });
 }
 
 export function getToken(cookie: string): string | undefined {

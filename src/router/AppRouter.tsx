@@ -6,14 +6,17 @@ import LoginPage from '../modules/login-page';
 import RegisterPage from '../modules/register-page';
 
 import { ROUTE__LOGIN, ROUTE__REGISTER } from './constants';
+import ProtectedRoutes from './ProtectedRoutes';
 
 const AppRouter = () => (
   <BrowserRouter>
     <Routes>
       <Route element={<ChatLayout />}>
         {/* empty chat */}
-        <Route index element={<ChatRoom />} />
-        <Route path="/:chatId" element={<ChatRoom />} />
+        <Route element={<ProtectedRoutes />}>
+          <Route index element={<ChatRoom />} />
+          <Route path="rooms/:chatId" element={<ChatRoom />} />
+        </Route>
       </Route>
       <Route element={<LoginLayout />}>
         <Route path={ROUTE__LOGIN} element={<LoginPage />} />

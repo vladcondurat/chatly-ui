@@ -1,5 +1,5 @@
 interface ILoginRequest {
-  emailAddress: string;
+  username: string;
   password: string;
 }
 
