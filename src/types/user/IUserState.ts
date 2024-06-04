@@ -1,9 +1,7 @@
-import IUserData from './IUserData';
+import IUserDetails from './IUserDetails';
 
 interface IUserState {
-  test: IUserData;
-  username: string;
-  avatarUrl: string;
+  data: IUserDetails;
   loading: boolean;
 }
 

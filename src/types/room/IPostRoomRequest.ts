@@ -1,6 +1,7 @@
+import IRoomDetails from './IRoomDetails';
+
 interface IPostRoomRequest {
-  imageUrl?: string;
-  roomName: string;
+  details: IRoomDetails;
   userIds: number[];
 }
 

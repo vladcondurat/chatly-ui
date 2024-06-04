@@ -1,9 +1,9 @@
 import IUser from '../user/IUser';
+import IMessageContent from './IMessageContent';
 
 interface IMessage {
   id: number;
-  attachedImageUrl: string;
-  textContent: string;
+  content: IMessageContent;
   userId: number;
   user: IUser;
 }

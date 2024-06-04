@@ -8,11 +8,11 @@ import alertService from '../../services/alert-service';
 import { setToken, removeToken } from '../../services/storage-service';
 import { AUTH__LOGIN, AUTH__LOGOUT } from '../constants';
 import { RootState } from '..';
-import { setLoginErrorAuthAction, setLoadingAuthAction, setTokenAuthAction, setStateAuthAction, resetDataAuthAction } from './auth-sync-actions';
+import { setLoginErrorAuthAction, setLoadingAuthAction, setTokenAuthAction, setStateAuthAction, resetDataAuthAction, setIsLoginErrorAuthAction } from './auth-sync-actions';
 import { fetchUserAsyncAction } from './user-actions';
 
-export const loginAuthActionAsync = createAsyncThunk<string, ILoginRequest, { state: RootState }>(AUTH__LOGIN, async (data, thunkApi) => {
-  thunkApi.dispatch(setLoginErrorAuthAction(false));
+export const loginAuthActionAsync = createAsyncThunk<void, ILoginRequest, { state: RootState }>(AUTH__LOGIN, async (data, thunkApi) => {
+  thunkApi.dispatch(setIsLoginErrorAuthAction(false));
   thunkApi.dispatch(setLoadingAuthAction(true));
   try {
     const response = await loginRequest(data);
@@ -23,14 +23,13 @@ export const loginAuthActionAsync = createAsyncThunk<string, ILoginRequest, { st
       thunkApi.dispatch(setStateAuthAction(true));
     } else {
       alertService.errorAlert({ title: LOGIN_FAILED__TITLE });
-      thunkApi.dispatch(setLoginErrorAuthAction(true));
+      thunkApi.dispatch(setIsLoginErrorAuthAction(true));
     }
   } catch (err) {
     if (err instanceof ApiException) {
-      alertService.errorAlert({ title: LOGIN_FAILED__TITLE });
-      return err.data.detail;
+      thunkApi.dispatch(setLoginErrorAuthAction(err.data.detail));
     }
-    thunkApi.dispatch(setLoginErrorAuthAction(true));
+    thunkApi.dispatch(setIsLoginErrorAuthAction(true));
   } finally {
     thunkApi.dispatch(setLoadingAuthAction(false));
   }

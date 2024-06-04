@@ -6,12 +6,12 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { LFWrapper, LFButton, LFInputWrapper } from './styles';
 import { useAppDispatch, useAppSelector } from '../../hooks/store-hooks';
 import { loginAuthActionAsync } from '../../store/actions/auth-actions';
-import { isLoggedInAuthSelector, loginErrorAuthSelector } from '../../store/selectors/auth-selectors';
+import { isLoggedInAuthSelector, isLoginErrorAuthSelector, loginErrorAuthSelector } from '../../store/selectors/auth-selectors';
 import { useNavigate } from 'react-router-dom';
 
 const schema = z.object({
   username: z.string().min(3).max(20),
-  password: z.string().min(6).max(100),
+  password: z.string().min(6, { message: 'Password must be at least 6 characters long' }).max(100, { message: 'Password must be at most 100 characters long' }),
 });
 
 type FormFields = z.infer<typeof schema>;
@@ -26,16 +26,19 @@ const LoginForm = () => {
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const isLoginError = useAppSelector(loginErrorAuthSelector);
+  const isLoginError = useAppSelector(isLoginErrorAuthSelector);
+  const loginError = useAppSelector(loginErrorAuthSelector);
   const isAuth = useAppSelector(isLoggedInAuthSelector);
 
   const onSubmit: SubmitHandler<FormFields> = async data => {
     await dispatch(loginAuthActionAsync({ username: data.username, password: data.password }));
-    // setError('username', { message: response.payload as string });
-    if (isLoginError) {
-      setError('username', { message: 'Invalid username or password' });
-    }
   };
+
+  useEffect(() => {
+    if (isLoginError) {
+      setError('username', { message: loginError });
+    }
+  }, [isLoginError, loginError, setError]);
 
   useEffect(() => {
     if (isAuth) {

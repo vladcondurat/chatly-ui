@@ -1,7 +1,8 @@
-import IUserData from './IUserData';
+import IUserDetails from './IUserDetails';
 
 interface IUser {
-  data: IUserData;
+  id: string;
+  details: IUserDetails;
 }
 
 export default IUser;

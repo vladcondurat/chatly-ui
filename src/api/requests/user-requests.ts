@@ -1,8 +1,8 @@
 import { AxiosResponse } from 'axios';
 import { getApi } from '../Api';
-import IUserResponse from '../../types/user/IUserResponse';
+import IUser from '../../types/user/IUser';
 
-export const getUserRequest = async (): Promise<IUserResponse> => {
-  const response: AxiosResponse<IUserResponse> = await getApi().get('/users');
+export const getUserRequest = async (): Promise<Partial<IUser>> => {
+  const response: AxiosResponse<Partial<IUser>> = await getApi().get('/users');
   return response.data;
 };

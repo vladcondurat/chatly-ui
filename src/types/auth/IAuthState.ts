@@ -2,7 +2,8 @@ interface IAuthState {
   token: string;
   state: boolean;
   loading: boolean;
-  loginError: boolean;
+  loginError: string;
+  isLoginError: boolean;
 }
 
 export default IAuthState;

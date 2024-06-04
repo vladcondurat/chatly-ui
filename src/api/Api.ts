@@ -3,6 +3,7 @@ import isEmpty from 'lodash/isEmpty';
 import store from '../store';
 import Config from '../config';
 import { authBearerTokenSelector } from '../store/selectors/auth-selectors';
+import handleApiError from '../utils/handleApiError';
 
 let instance: Axios = null;
 
@@ -19,6 +20,19 @@ export const initApi = () => {
     }
     return newConfig;
   });
+
+  instance.interceptors.response.use(
+    res => {
+      return res;
+    },
+    async error => {
+      if (error.response.status === 401 || error.response.status === 403) {
+        error.response.data = { detail: 'Something went wrong' };
+      }
+      console.log('error', error);
+      throw handleApiError(error);
+    },
+  );
 };
 
 export const getApi = (): Axios => {

@@ -1,14 +1,14 @@
 import { AxiosResponse } from 'axios';
 import { getApi } from '../Api';
 import IMessage from '../../types/message/IMessage';
-import IMessageRequest from '../../types/message/IMessageRequest';
+import IMessageContent from '../../types/message/IMessageContent';
 
-export const postMessageRequest = async (data: IMessageRequest, roomId: string): Promise<IMessage> => {
+export const postMessageRequest = async (data: Partial<IMessageContent>, roomId: string): Promise<IMessage> => {
   const response: AxiosResponse<IMessage> = await getApi().post(`/messages/${roomId}`, data);
   return response.data;
 };
 
-export const updateMessageRequest = async (data: IMessageRequest, messageId: string): Promise<IMessage> => {
+export const updateMessageRequest = async (data: Partial<IMessageContent>, messageId: string): Promise<IMessage> => {
   const response: AxiosResponse<IMessage> = await getApi().put(`/messages/${messageId}`, data);
   return response.data;
 };

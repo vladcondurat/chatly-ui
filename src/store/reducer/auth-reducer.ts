@@ -1,12 +1,20 @@
 import { createReducer } from '@reduxjs/toolkit';
 import IAuthState from '../../types/auth/IAuthState';
-import { setStateAuthAction, setTokenAuthAction, setLoadingAuthAction, setLoginErrorAuthAction, resetDataAuthAction } from '../actions/auth-sync-actions';
+import {
+  setStateAuthAction,
+  setTokenAuthAction,
+  setLoadingAuthAction,
+  setLoginErrorAuthAction,
+  resetDataAuthAction,
+  setIsLoginErrorAuthAction,
+} from '../actions/auth-sync-actions';
 
 const initialState: IAuthState = {
   token: null,
   state: false,
   loading: false,
-  loginError: false,
+  loginError: null,
+  isLoginError: false,
 };
 
 const authReducer = createReducer(initialState, builder =>
@@ -15,6 +23,7 @@ const authReducer = createReducer(initialState, builder =>
     .addCase(setTokenAuthAction, (state, action) => ({ ...state, token: action.payload }))
     .addCase(setLoadingAuthAction, (state, action) => ({ ...state, loading: action.payload }))
     .addCase(setLoginErrorAuthAction, (state, action) => ({ ...state, loginError: action.payload }))
+    .addCase(setIsLoginErrorAuthAction, (state, action) => ({ ...state, isLoginError: action.payload }))
     .addCase(resetDataAuthAction, () => initialState),
 );
 

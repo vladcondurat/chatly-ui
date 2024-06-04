@@ -4,10 +4,10 @@ import TopBar from './components/top-bar';
 import SentMsg from './components/sent-msg';
 import ReceivedMsg from './components/received-msg';
 import MsgInput from './components/msg-input';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 
 const ChatRoom: React.FC = () => {
-  const { chatId } = useParams();
+  // const { chatId } = useParams();
   const lastMessageRef = useRef<HTMLDivElement>(null);
 
   const scrollToLastMessage = () => {
