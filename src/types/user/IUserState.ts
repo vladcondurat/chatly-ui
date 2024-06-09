@@ -1,7 +1,7 @@
-import IUserDetails from './IUserDetails';
+import IUser from './IUser';
 
 interface IUserState {
-  data: IUserDetails;
+  details: IUser;
   loading: boolean;
 }
 

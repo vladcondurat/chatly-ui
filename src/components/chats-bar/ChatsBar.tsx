@@ -1,17 +1,28 @@
 import ChatCell from '../chat-cell';
 import SearchBar from '../search-bar';
 import { CBContainer, CBCellWrapper } from './styles';
+import { fetchRoomsAsyncAction } from '../../store/actions/room-actions';
+import { useEffect } from 'react';
+import { roomsSelector } from '../../store/selectors/room-selectors';
+import { useAppDispatch, useAppSelector } from '../../hooks/store-hooks';
 
-const ChatsBar = () => (
-  <CBContainer>
-    <SearchBar />
-    <CBCellWrapper>
-      <ChatCell id="1" />
-      <ChatCell id="2" />
-      <ChatCell id="3" />
-      <ChatCell id="4" />
-    </CBCellWrapper>
-  </CBContainer>
-);
+const ChatsBar = () => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchRoomsAsyncAction());
+  }, [dispatch]);
+
+  const chatCells = useAppSelector(roomsSelector);
+
+  return (
+    <CBContainer>
+      <SearchBar />
+      <CBCellWrapper>
+        {chatCells && chatCells.length > 0 ? chatCells.map(chatCell => <ChatCell key={chatCell.id} props={chatCell} />) : <div>No chat rooms available</div>}
+      </CBCellWrapper>
+    </CBContainer>
+  );
+};
 
 export default ChatsBar;

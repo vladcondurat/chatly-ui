@@ -10,3 +10,14 @@ export const AUTH__RESET_DATA = '[AUTH] RESET_DATA';
 export const USER__FETCH = '[USER] FETCH';
 export const USER__SET_DATA = '[USER] SET_DATA';
 export const USER__SET_LOADING = '[USER] SET_LOADING';
+
+export const ROOM__FETCH_ROOMS = '[ROOM] FETCH';
+export const ROOM__FETCH_SELECTED_ROOM = '[ROOM] FETCH';
+export const ROOM__SET_ROOMS = '[ROOM] SET_ROOMS';
+export const ROOM__SET_SELECTED_ROOM = '[ROOM] SET_SELECTED_ROOM';
+export const ROOM__SET_LOADING = '[ROOM] SET_LOADING';
+
+export const MESSAGE__POST = '[MESSAGE] POST';
+export const MESSAGE__SET_DATA = '[MESSAGE] SET_DATA';
+export const MESSAGE__SET_LOADING = '[MESSAGE] SET_LOADING';
+export const MESSAGE__SET_IS_ERROR = '[MESSAGE] SET_IS_ERROR';

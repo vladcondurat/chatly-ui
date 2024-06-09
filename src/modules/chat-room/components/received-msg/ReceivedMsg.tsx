@@ -1,20 +1,22 @@
 import { RMContainer, RMMsgTime, RMTextContainer, RMWrapper, RMAvatar, RMTextWrapper, RMUsername } from './styles';
 import AvatarPng from './assets/Avatar.png';
+import IMessage from '../../../../types/message/IMessage';
+import formatTime from '../../../../utils/formatTime';
 
-const ReceivedMsg = () => (
-  <RMWrapper>
-    <RMAvatar src={AvatarPng} alt="avatar-img" />
-    <RMTextWrapper>
-      <RMUsername>Mihai</RMUsername>
-      <RMContainer>
-        <RMTextContainer>
-          ce faci faci faci faci faci faci faci faci faci faci faci v v vfaci faci faci faci faci faci faci faci faci faci faci faci faci faci faci faci faci faci faci faci faci
-          faci faci faci faci faci faci faci faci faci faci faci faci?
-        </RMTextContainer>
-        <RMMsgTime>10:00 PM</RMMsgTime>
-      </RMContainer>
-    </RMTextWrapper>
-  </RMWrapper>
-);
+const ReceivedMsg = ({ props }: { props: IMessage }) => {
+  const { content, user, createdAt } = props;
+  return (
+    <RMWrapper>
+      <RMAvatar src={AvatarPng} alt="avatar-img" />
+      <RMTextWrapper>
+        <RMUsername>{user.username}</RMUsername>
+        <RMContainer>
+          <RMTextContainer>{content.textContent}</RMTextContainer>
+          <RMMsgTime>{formatTime(createdAt)}</RMMsgTime>
+        </RMContainer>
+      </RMTextWrapper>
+    </RMWrapper>
+  );
+};
 
 export default ReceivedMsg;

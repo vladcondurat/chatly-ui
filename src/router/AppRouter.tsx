@@ -15,7 +15,7 @@ const AppRouter = () => (
         {/* empty chat */}
         <Route element={<ProtectedRoutes />}>
           <Route index element={<ChatRoom />} />
-          <Route path="rooms/:chatId" element={<ChatRoom />} />
+          <Route path="/:roomId" element={<ChatRoom />} />
         </Route>
       </Route>
       <Route element={<LoginLayout />}>

@@ -1,7 +1,7 @@
-import IRoom from './IRoom';
+import IRoomCardResponse from './IRoomCardResponse';
 
 interface IGetRoomsResponse {
-  rooms: IRoom[];
+  rooms: IRoomCardResponse[];
 }
 
 export default IGetRoomsResponse;

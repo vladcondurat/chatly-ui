@@ -17,8 +17,8 @@ export const loginAuthActionAsync = createAsyncThunk<void, ILoginRequest, { stat
   try {
     const response = await loginRequest(data);
     if (response?.token) {
-      thunkApi.dispatch(setTokenAuthAction(response.token));
       setToken(AUTH_TOKEN, response.token);
+      thunkApi.dispatch(setTokenAuthAction(response.token));
       await thunkApi.dispatch(fetchUserAsyncAction());
       thunkApi.dispatch(setStateAuthAction(true));
     } else {

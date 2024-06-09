@@ -4,7 +4,8 @@ import IUser from '../types/user/IUser';
 export const mapUserResponseToUser = (data: Partial<IUser>): IUser => {
   const user: IUser = {
     id: toString(data?.id),
-    details: data?.details,
+    username: data?.username,
+    avatarUrl: data?.avatarUrl,
   };
 
   return user;

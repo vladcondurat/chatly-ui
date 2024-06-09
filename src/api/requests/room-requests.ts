@@ -5,6 +5,7 @@ import IGetRoomsResponse from '../../types/room/IGetRoomsResponse';
 import IRoom from '../../types/room/IRoom';
 import IRoomDetails from '../../types/room/IRoomDetails';
 import IAddUsersToRoomRequest from '../../types/room/IAddUsersToRoomRequest';
+import IRoomResponse from '../../types/room/IRoomResponse';
 
 export const postRoomRequest = async (data: IPostRoomRequest): Promise<Partial<IRoom>> => {
   const response: AxiosResponse<Partial<IRoom>> = await getApi().post('/rooms', data);
@@ -20,8 +21,8 @@ export const getRoomsRequest = async (): Promise<IGetRoomsResponse> => {
   return response.data;
 };
 
-export const getRoomDetailsRequest = async (roomId: string): Promise<Partial<IRoom>> => {
-  const response: AxiosResponse<Partial<IRoom>> = await getApi().get(`/rooms/${roomId}`);
+export const getRoomDetailsRequest = async (roomId: string): Promise<Partial<IRoomResponse>> => {
+  const response: AxiosResponse<Partial<IRoomResponse>> = await getApi().get(`/rooms/${roomId}`);
   return response.data;
 };
 

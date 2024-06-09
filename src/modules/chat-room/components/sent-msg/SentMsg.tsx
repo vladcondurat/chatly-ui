@@ -1,15 +1,18 @@
+import IMessage from '../../../../types/message/IMessage';
+import formatTime from '../../../../utils/formatTime';
 import { SMContainer, SMMsgTime, SMTextContainer, SMWrapper } from './styles';
 
-const SentMsg = () => (
-  <SMWrapper>
-    <SMContainer>
-      <SMTextContainer>
-        ce faci faci faci faci faci faci faci faci faci faci faci v v vfaci faci faci faci faci faci faci faci faci faci faci faci faci faci faci faci faci faci faci faci faci faci
-        faci faci faci faci faci faci faci faci faci faci faci?
-      </SMTextContainer>
-      <SMMsgTime>10:00 PM</SMMsgTime>
-    </SMContainer>
-  </SMWrapper>
-);
+const SentMsg = ({ props }: { props: IMessage }) => {
+  const { content, createdAt } = props;
+
+  return (
+    <SMWrapper>
+      <SMContainer>
+        <SMTextContainer>{content.textContent}</SMTextContainer>
+        <SMMsgTime>{formatTime(createdAt)}</SMMsgTime>
+      </SMContainer>
+    </SMWrapper>
+  );
+};
 
 export default SentMsg;

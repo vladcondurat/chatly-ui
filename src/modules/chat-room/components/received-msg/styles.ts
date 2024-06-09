@@ -15,7 +15,7 @@ export const RMContainer = styled.div`
   padding: 8px 4px 8px 12px;
   border-radius: 14px 14px 14px 4px;
   background-color: #393d47;
-  gap: 4px;
+  gap: 8px;
 `;
 
 export const RMTextContainer = styled.div`
@@ -28,7 +28,7 @@ export const RMTextContainer = styled.div`
 export const RMMsgTime = styled.div`
   display: flex;
   align-items: flex-end;
-  min-width: 60px;
+  min-width: 30px;
   padding-bottom: 2px;
   font-size: 12px;
   color: #a1aab3;

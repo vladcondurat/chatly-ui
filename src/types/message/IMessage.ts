@@ -2,9 +2,9 @@ import IUser from '../user/IUser';
 import IMessageContent from './IMessageContent';
 
 interface IMessage {
-  id: number;
+  id: string;
   content: IMessageContent;
-  userId: number;
+  createdAt: string;
   user: IUser;
 }
 

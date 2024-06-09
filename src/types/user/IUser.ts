@@ -1,8 +1,7 @@
-import IUserDetails from './IUserDetails';
-
 interface IUser {
   id: string;
-  details: IUserDetails;
+  username: string;
+  avatarUrl: string;
 }
 
 export default IUser;
