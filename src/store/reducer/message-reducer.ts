@@ -1,7 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import IMessageState from '../../types/message/IMessageState';
-import { setLoadingAuthAction } from '../actions/auth-sync-actions';
-import { setDataMessageAction, setIsMessageErrorAction } from '../actions/message-actions';
+import { setDataMessageAction, setIsErrorMessageAction, setLoadingMessageAction } from '../actions/message-actions';
 
 const initialState: IMessageState = {
   data: null,
@@ -12,8 +11,8 @@ const initialState: IMessageState = {
 const messageReducer = createReducer(initialState, builder => {
   builder
     .addCase(setDataMessageAction, (state, action) => ({ ...state, data: action.payload }))
-    .addCase(setLoadingAuthAction, (state, action) => ({ ...state, loading: action.payload }))
-    .addCase(setIsMessageErrorAction, (state, action) => ({ ...state, isError: action.payload }));
+    .addCase(setLoadingMessageAction, (state, action) => ({ ...state, loading: action.payload }))
+    .addCase(setIsErrorMessageAction, (state, action) => ({ ...state, isError: action.payload }));
 });
 
 export default messageReducer;

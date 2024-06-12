@@ -27,6 +27,7 @@ export const IFField = styled.input`
   width: 100%;
   height: 40px;
   border-radius: 8px;
+  font-size: 16px;
   color: white;
   border: none;
   padding: 0 8px 0 8px;

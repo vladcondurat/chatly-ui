@@ -22,9 +22,6 @@ const MsgInput = ({ roomId }: { roomId: string }) => {
 
       e.currentTarget.value = '';
       adjustTextAreaHeight();
-
-      //temporary solution to refresh the page after sending a message
-      window.location.reload();
     }
   };
 

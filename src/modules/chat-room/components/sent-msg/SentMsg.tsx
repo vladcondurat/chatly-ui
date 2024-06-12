@@ -1,16 +1,26 @@
 import IMessage from '../../../../types/message/IMessage';
 import formatTime from '../../../../utils/formatTime';
-import { SMContainer, SMMsgTime, SMTextContainer, SMWrapper } from './styles';
+import { SMContainer, SMError, SMLoading, SMMsgTime, SMTextContainer, SMTextWrapper, SMWrapper } from './styles';
 
-const SentMsg = ({ props }: { props: IMessage }) => {
-  const { content, createdAt } = props;
+interface IReceivedMsgProps {
+  message: IMessage;
+  isLoading?: boolean;
+  isError?: boolean;
+}
+
+const SentMsg = ({ message, isLoading, isError }: IReceivedMsgProps) => {
+  const { content, createdAt } = message;
 
   return (
     <SMWrapper>
-      <SMContainer>
-        <SMTextContainer>{content.textContent}</SMTextContainer>
-        <SMMsgTime>{formatTime(createdAt)}</SMMsgTime>
-      </SMContainer>
+      <SMTextWrapper>
+        {isLoading && <SMLoading>Loading...</SMLoading>}
+        {isError && <SMError>Failed</SMError>}
+        <SMContainer>
+          <SMTextContainer>{content.textContent}</SMTextContainer>
+          <SMMsgTime>{isLoading ? 'now' : formatTime(createdAt)}</SMMsgTime>
+        </SMContainer>
+      </SMTextWrapper>
     </SMWrapper>
   );
 };

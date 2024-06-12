@@ -10,18 +10,22 @@ import { useAppDispatch, useAppSelector } from '../../hooks/store-hooks';
 import { fetchSelectedRoomAsyncAction } from '../../store/actions/room-actions';
 import { dataUserSelector } from '../../store/selectors/user-selectors';
 import { fetchUserAsyncAction } from '../../store/actions/user-actions';
+import { dataMessageSelector, isErrorMessageSelector, isLoadingMessageSelector } from '../../store/selectors/message-selectors';
 
 const ChatRoom = () => {
   const dispatch = useAppDispatch();
   const { roomId } = useParams();
 
   useEffect(() => {
-    dispatch(fetchSelectedRoomAsyncAction({ roomId: roomId }));
+    dispatch(fetchSelectedRoomAsyncAction({ roomId }));
     dispatch(fetchUserAsyncAction());
   }, [dispatch, roomId]);
 
   const room = useAppSelector(selectedRoomSelector);
   const user = useAppSelector(dataUserSelector);
+  const isLoadingMessage = useAppSelector(isLoadingMessageSelector);
+  const isErrorMessage = useAppSelector(isErrorMessageSelector);
+  const sentMessage = useAppSelector(dataMessageSelector);
   const lastMessageRef = useRef<HTMLDivElement>(null);
 
   const scrollToLastMessage = () => {
@@ -32,7 +36,14 @@ const ChatRoom = () => {
 
   useEffect(() => {
     scrollToLastMessage();
-  }, [room]);
+  }, [room, sentMessage]);
+
+  useEffect(() => {
+    if (!isLoadingMessage && !isErrorMessage && sentMessage) {
+      // Temporary solution to reload the page after sending a message
+      window.location.reload();
+    }
+  }, [isLoadingMessage, isErrorMessage, sentMessage]);
 
   return (
     <CRContainer>
@@ -40,14 +51,16 @@ const ChatRoom = () => {
       <CRMsgWrapper>
         <CRMsgContainer>
           {room &&
-            room.messages.length > 0 &&
+            room.messages &&
             room.messages.map(msg => {
               if (msg.user.id === user.id) {
-                return <SentMsg key={msg.id} props={msg} />;
+                return <SentMsg key={msg.id} message={msg} />;
               } else {
-                return <ReceivedMsg key={msg.id} props={msg} />;
+                return <ReceivedMsg key={msg.id} message={msg} />;
               }
             })}
+          {isLoadingMessage && sentMessage && <SentMsg message={sentMessage} isLoading />}
+          {isErrorMessage && <SentMsg message={sentMessage} isError />}
           <div ref={lastMessageRef} />
         </CRMsgContainer>
       </CRMsgWrapper>

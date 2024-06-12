@@ -3,8 +3,8 @@ import AvatarPng from './assets/Avatar.png';
 import IMessage from '../../../../types/message/IMessage';
 import formatTime from '../../../../utils/formatTime';
 
-const ReceivedMsg = ({ props }: { props: IMessage }) => {
-  const { content, user, createdAt } = props;
+const ReceivedMsg = ({ message }: { message: IMessage }) => {
+  const { user, content, createdAt } = message;
   return (
     <RMWrapper>
       <RMAvatar src={AvatarPng} alt="avatar-img" />

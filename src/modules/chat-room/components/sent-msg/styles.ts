@@ -31,3 +31,20 @@ export const SMMsgTime = styled.div`
   font-size: 12px;
   color: #b7d9f3;
 `;
+
+export const SMTextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const SMLoading = styled.div`
+  padding-left: 12px;
+  font-size: 12px;
+  color: #a1aab3;
+`;
+
+export const SMError = styled.div`
+  padding-left: 12px;
+  font-size: 12px;
+  color: red;
+`;

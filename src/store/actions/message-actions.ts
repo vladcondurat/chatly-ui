@@ -10,7 +10,7 @@ import ApiException from '../../types/api/ApiException';
 
 export const setDataMessageAction = createAction<IMessage>(MESSAGE__SET_DATA);
 export const setLoadingMessageAction = createAction<boolean>(MESSAGE__SET_LOADING);
-export const setIsMessageErrorAction = createAction<boolean>(MESSAGE__SET_IS_ERROR);
+export const setIsErrorMessageAction = createAction<boolean>(MESSAGE__SET_IS_ERROR);
 
 interface PostMessageParams {
   messageContent: Partial<IMessageContent>;
@@ -19,13 +19,15 @@ interface PostMessageParams {
 
 export const postMessageAsyncAction = createAsyncThunk<void, PostMessageParams, { state: RootState }>(MESSAGE__POST, async ({ messageContent, roomId }, thunkApi) => {
   thunkApi.dispatch(setLoadingMessageAction(true));
+  thunkApi.dispatch(setDataMessageAction(mapMessageResponseToMessage(messageContent)));
+  // await new Promise<void>(resolve => setTimeout(resolve, 3000));
   try {
     const messageResponse: IMessage = await postMessageRequest(messageContent, roomId);
     const message = mapMessageResponseToMessage(messageResponse);
     thunkApi.dispatch(setDataMessageAction(message));
   } catch (err) {
     if (err instanceof ApiException) {
-      thunkApi.dispatch(setIsMessageErrorAction(true));
+      thunkApi.dispatch(setIsErrorMessageAction(true));
     }
   } finally {
     thunkApi.dispatch(setLoadingMessageAction(false));
