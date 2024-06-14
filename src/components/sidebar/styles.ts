@@ -8,6 +8,10 @@ export const SBContainer = styled.div`
   min-width: 50px;
   background: #232733;
   height: 100%;
+
+  @media (max-width: 500px) {
+    display: none;
+  }
 `;
 
 export const SBNavOptionContainer = styled.div`
@@ -15,6 +19,10 @@ export const SBNavOptionContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const SBSvg = styled.img`

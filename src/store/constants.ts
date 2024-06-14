@@ -6,6 +6,9 @@ export const AUTH__SET_LOGIN_ERROR = '[AUTH] SET_LOGIN_ERROR';
 export const AUTH__LOGIN = '[AUTH] LOGIN';
 export const AUTH__LOGOUT = '[AUTH] LOGOUT';
 export const AUTH__RESET_DATA = '[AUTH] RESET_DATA';
+export const AUTH__REGISTER = '[AUTH] REGISTER';
+export const AUTH__SET_REGISTER_ERROR = '[AUTH] SET_REGISTER_ERROR';
+export const AUTH__SET_IS_REGISTERED = '[AUTH] SET_IS_REGISTERED';
 
 export const USER__FETCH = '[USER] FETCH';
 export const USER__SET_DATA = '[USER] SET_DATA';

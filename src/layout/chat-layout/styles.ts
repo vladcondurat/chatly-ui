@@ -14,4 +14,14 @@ export const CLChatRoomContainer = styled.div`
   height: 100%;
   background: #232733;
   border-radius: 12px 0 0 12px;
+
+  @media (max-width: 800px) {
+    border-radius: 0px;
+  }
+`;
+
+export const CLChatsBarContainer = styled.div`
+  @media (max-width: 500px) {
+    display: none;
+  }
 `;

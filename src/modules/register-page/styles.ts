@@ -2,11 +2,14 @@ import styled from 'styled-components';
 
 export const RPContainer = styled.div`
   display: flex;
+  width: 340px;
   flex-direction: column;
   color: white;
-  width: 340px;
-  height: fit-content;
   gap: 24px;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 `;
 
 export const RPTitleWrapper = styled.div`
@@ -33,6 +36,10 @@ export const RPLoginTextWrapper = styled.div`
 export const RPTextContainer = styled.div`
   display: flex;
   gap: 2px;
+
+  @media (max-width: 380px) {
+    flex-direction: column;
+  }
 `;
 
 export const RPFormWrapper = styled.div`

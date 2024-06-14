@@ -41,7 +41,7 @@ const MsgInput = ({ roomId }: { roomId: string }) => {
     <MIContainer>
       <MIWrapper>
         <MISvg src={AttachSvg} />
-        <MITextArea ref={textAreaRef} placeholder="Write a message..." onKeyDown={handleOnSubmit} onInput={handleInput} rows={1} />
+        <MITextArea ref={textAreaRef} placeholder="Aa" onKeyDown={handleOnSubmit} onInput={handleInput} rows={1} />
         <MISvg src={EmojiSvg} />
       </MIWrapper>
     </MIContainer>

@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 
-export const CCContainer = styled.div`
+export const CCContainer = styled.div<{ $isSelected: boolean }>`
   display: flex;
   justify-content: space-between;
   width: 100%;
   height: fit-content;
+  border-radius: 4px;
+  background-color: ${({ $isSelected }) => $isSelected && '#282D3C'};
   padding: 8px;
+  gap: 8px;
   user-select: none;
 `;
 
@@ -13,11 +16,6 @@ export const CCImage = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-`;
-
-export const CCLastMsgContainer = styled.div`
-  font-size: 12px;
-  color: #888888;
 `;
 
 export const CCChatName = styled.div`
@@ -37,17 +35,26 @@ export const CCLastMsgTimeWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  @media (max-width: 800px) and (min-width: 501px) {
+    display: none;
+  }
+`;
+
+export const CCLastMsgContainer = styled.div`
+  font-size: 12px;
+  color: #888888;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
 `;
 
 export const CCTextWrapper = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-`;
-
-export const CCDetailsWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  overflow: hidden;
+  @media (max-width: 800px) and (min-width: 501px) {
+    display: none;
+  }
 `;

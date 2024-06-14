@@ -18,7 +18,7 @@ export const initApi = () => {
     const token2 = getToken(AUTH_TOKEN);
     if (token2) {
       newConfig.headers.Authorization = `Bearer ${token2}`;
-    } //AICI SA VEDEM
+    }
     if (authBearerTokenSelector(store.getState())) {
       const token = authBearerTokenSelector(store.getState());
       newConfig.headers.Authorization = `Bearer ${token}`;
@@ -34,7 +34,6 @@ export const initApi = () => {
       if (error.response.status === 401 || error.response.status === 403) {
         error.response.data = { detail: 'Something went wrong' };
       }
-      console.log('error', error);
       throw handleApiError(error);
     },
   );

@@ -45,24 +45,22 @@ const ChatRoom = () => {
     }
   }, [isLoadingMessage, isErrorMessage, sentMessage]);
 
+  const handleMessageRender = () => {
+    return (
+      <>
+        {room && room.messages && room.messages.map(msg => (msg.user.id === user.id ? <SentMsg key={msg.id} message={msg} /> : <ReceivedMsg key={msg.id} message={msg} />))}
+        {isLoadingMessage && sentMessage && <SentMsg message={sentMessage} isLoading />}
+        {isErrorMessage && <SentMsg message={sentMessage} isError />}
+        <div ref={lastMessageRef} />
+      </>
+    );
+  };
+
   return (
     <CRContainer>
       <TopBar />
       <CRMsgWrapper>
-        <CRMsgContainer>
-          {room &&
-            room.messages &&
-            room.messages.map(msg => {
-              if (msg.user.id === user.id) {
-                return <SentMsg key={msg.id} message={msg} />;
-              } else {
-                return <ReceivedMsg key={msg.id} message={msg} />;
-              }
-            })}
-          {isLoadingMessage && sentMessage && <SentMsg message={sentMessage} isLoading />}
-          {isErrorMessage && <SentMsg message={sentMessage} isError />}
-          <div ref={lastMessageRef} />
-        </CRMsgContainer>
+        <CRMsgContainer>{handleMessageRender()}</CRMsgContainer>
       </CRMsgWrapper>
       <MsgInput roomId={roomId} />
     </CRContainer>

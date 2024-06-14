@@ -1,4 +1,8 @@
 function formatTime(timeString: string): string {
+  if (!timeString) {
+    return '';
+  }
+
   const now = new Date();
   const time = new Date(timeString);
 

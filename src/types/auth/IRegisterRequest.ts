@@ -1,7 +1,7 @@
 interface IRegisterRequest {
   email: string;
   password: string;
-  name: string;
+  username: string;
 }
 
 export default IRegisterRequest;

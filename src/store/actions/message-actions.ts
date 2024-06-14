@@ -20,7 +20,6 @@ interface PostMessageParams {
 export const postMessageAsyncAction = createAsyncThunk<void, PostMessageParams, { state: RootState }>(MESSAGE__POST, async ({ messageContent, roomId }, thunkApi) => {
   thunkApi.dispatch(setLoadingMessageAction(true));
   thunkApi.dispatch(setDataMessageAction(mapMessageResponseToMessage(messageContent)));
-  // await new Promise<void>(resolve => setTimeout(resolve, 3000));
   try {
     const messageResponse: IMessage = await postMessageRequest(messageContent, roomId);
     const message = mapMessageResponseToMessage(messageResponse);

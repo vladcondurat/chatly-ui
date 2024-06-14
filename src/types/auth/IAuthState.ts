@@ -4,6 +4,8 @@ interface IAuthState {
   loading: boolean;
   loginError: string;
   isLoginError: boolean;
+  registerError: string;
+  isRegistered: boolean;
 }
 
 export default IAuthState;

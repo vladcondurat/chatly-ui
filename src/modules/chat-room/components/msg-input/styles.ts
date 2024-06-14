@@ -4,9 +4,16 @@ export const MIContainer = styled.div`
   display: flex;
   flex-grow: 1;
   height: fit-content;
-  max-width: calc(100vw - 350px);
 
   padding: 16px 40px 16px 40px;
+
+  @media (max-width: 800px) {
+    padding: 16px 20px 16px 20px;
+  }
+
+  @media (max-width: 500px) {
+    padding: 16px 8px 16px 8px;
+  }
 `;
 
 export const MIWrapper = styled.div`

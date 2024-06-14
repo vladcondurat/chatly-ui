@@ -3,10 +3,13 @@ import styled from 'styled-components';
 export const LPContainer = styled.div`
   display: flex;
   flex-direction: column;
-  color: white;
   width: 340px;
-  height: fit-content;
+  color: white;
   gap: 24px;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 `;
 
 export const LPTitleWrapper = styled.div`
@@ -32,6 +35,10 @@ export const LPRegisterTextWrapper = styled.div`
 export const LPTextContainer = styled.div`
   display: flex;
   gap: 2px;
+
+  @media (max-width: 380px) {
+    flex-direction: column;
+  }
 `;
 
 export const LPFormWrapper = styled.div`

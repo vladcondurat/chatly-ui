@@ -3,13 +3,21 @@ import styled from 'styled-components';
 export const CBContainer = styled.div`
   display: flex;
   flex-direction: column;
-  min-width: 300px;
+  width: 300px;
   height: 100vh;
   overflow-y: hidden;
   background: rgb(30, 32, 36);
   background: linear-gradient(148deg, rgba(30, 32, 36, 1) 0%, rgba(26, 32, 51, 1) 100%);
   padding: 4px;
   gap: 16px;
+
+  @media (max-width: 800px) {
+    width: fit-content;
+  }
+
+  @media (max-width: 500px) {
+    width: 100vw;
+  }
 
   ::-webkit-scrollbar {
     width: 2px;
@@ -34,4 +42,6 @@ export const CBCellWrapper = styled.div`
   flex-direction: column;
   overflow-y: scroll;
   height: 100%;
+  width: 100%;
+  padding-left: 2px; // Compansate for scrollbar width
 `;

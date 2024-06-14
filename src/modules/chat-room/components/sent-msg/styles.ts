@@ -8,7 +8,7 @@ export const SMWrapper = styled.div`
 
 export const SMContainer = styled.div`
   display: flex;
-  max-width: 484px;
+  max-width: 480px;
   width: fit-content;
   padding: 8px 12px 8px 12px;
   border-radius: 14px 14px 4px 14px;
@@ -17,16 +17,18 @@ export const SMContainer = styled.div`
 `;
 
 export const SMTextContainer = styled.div`
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
   display: flex;
   flex-grow: 1;
   color: white;
-  overflow-wrap: break-word;
 `;
 
 export const SMMsgTime = styled.div`
   display: flex;
   align-items: flex-end;
-  min-width: 30px;
+  min-width: 20px;
   padding-bottom: 2px;
   font-size: 12px;
   color: #b7d9f3;

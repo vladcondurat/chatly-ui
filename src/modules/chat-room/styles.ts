@@ -31,6 +31,14 @@ export const CRMsgContainer = styled.div`
   width: 100%;
   height: 100%;
   padding: 0 40px 0 40px;
+
+  @media (max-width: 800px) {
+    padding: 0 20px 0 80px;
+  }
+
+  @media (max-width: 500px) {
+    padding: 0 8px 0 80px;
+  }
 `;
 
 export const CRMsgWrapper = styled.div`
