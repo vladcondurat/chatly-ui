@@ -1,5 +1,5 @@
 import { CCContainer, CCChatName, CCImage, CCLastMsgContainer, CCLastMsgTimeContainer, CCLastMsgTimeWrapper, CCTextWrapper } from './styles';
-import genericAvatarImage from './assets/generic-avatar.png';
+import genericAvatarImage from '../../assets/generic-avatar.png';
 import { useNavigate } from 'react-router-dom';
 import IRoomCard from '../../types/room/IRoomCard';
 import formatTime from '../../utils/formatTime';

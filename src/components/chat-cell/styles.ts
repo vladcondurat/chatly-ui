@@ -32,9 +32,9 @@ export const CCLastMsgTimeContainer = styled.div`
 
 export const CCLastMsgTimeWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
+  align-items: flex-start;
+
   @media (max-width: 800px) and (min-width: 501px) {
     display: none;
   }

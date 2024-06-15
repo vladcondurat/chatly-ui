@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ECRContainer = styled.div`
+export const EPContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

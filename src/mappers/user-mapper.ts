@@ -5,6 +5,7 @@ export const mapUserResponseToUser = (data: Partial<IUser>): IUser => {
   const user: IUser = {
     id: toString(data?.id),
     username: data?.username,
+    email: data?.email,
     avatarUrl: data?.avatarUrl,
   };
 

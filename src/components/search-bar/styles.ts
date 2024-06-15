@@ -12,15 +12,10 @@ export const SBWrapper = styled.div`
   gap: 8px;
   align-items: center;
   padding: 0 8px 0 8px;
-  margin: 4px 8px 0 8px;
   background-color: #2b2d33;
   border-radius: 4px;
   border-bottom: 1px solid #979aa0;
   color: white;
-
-  @media (max-width: 800px) and (min-width: 501px) {
-    display: none;
-  }
 `;
 
 export const SBInput = styled.input`

@@ -8,7 +8,7 @@ export const CBContainer = styled.div`
   overflow-y: hidden;
   background: rgb(30, 32, 36);
   background: linear-gradient(148deg, rgba(30, 32, 36, 1) 0%, rgba(26, 32, 51, 1) 100%);
-  padding: 4px;
+  padding: 8px 4px 8px 4px;
   gap: 16px;
 
   @media (max-width: 800px) {
@@ -44,4 +44,13 @@ export const CBCellWrapper = styled.div`
   height: 100%;
   width: 100%;
   padding-left: 2px; // Compansate for scrollbar width
+`;
+
+export const CBSearchBarWrapper = styled.div`
+  width: 100%;
+  padding: 0 8px 0 8px;
+
+  @media (max-width: 800px) {
+    display: none;
+  }
 `;

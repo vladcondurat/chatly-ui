@@ -5,12 +5,14 @@ import ChatRoom from '../modules/chat-room';
 import LoginPage from '../modules/login-page';
 import RegisterPage from '../modules/register-page';
 
-import { ROUTE__LOGIN, ROUTE__PROFILE, ROUTE__REGISTER, ROUTE__ROOMS, ROUTE__ROOMS_ID } from './constants';
+import { ROUTE__EDIT_PROFILE, ROUTE__LOGIN, ROUTE__PROFILE, ROUTE__REGISTER, ROUTE__ROOMS, ROUTE__ROOMS_ID } from './constants';
 import ProtectedRoutes from './ProtectedRoutes';
 import EmptyChatRoom from '../modules/empty-chat-room';
 import useScreenWidth from '../hooks/useScreenWidth';
 import ChatsBar from '../components/chats-bar';
-import ProfileLayout from '../layout/settings-layout';
+import ProfileLayout from '../layout/profile-layout';
+import EmptyProfile from '../modules/empty-profile';
+import EditProfile from '../modules/edit-profile';
 
 const AppRouter = () => {
   const width = useScreenWidth();
@@ -26,7 +28,8 @@ const AppRouter = () => {
             <Route path={ROUTE__ROOMS_ID} element={<ChatRoom />} />
           </Route>
           <Route element={<ProfileLayout />}>
-            <Route path={ROUTE__PROFILE} element={<div>sal</div>} />
+            <Route path={ROUTE__PROFILE} element={<EmptyProfile />} />
+            <Route path={ROUTE__EDIT_PROFILE} element={<EditProfile />} />
           </Route>
         </Route>
         <Route element={<LoginLayout />}>

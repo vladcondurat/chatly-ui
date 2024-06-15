@@ -14,6 +14,7 @@ export const fetchUserAsyncAction = createAsyncThunk<void, never, { state: RootS
   thunkApi.dispatch(setLoadingUserAction(true));
   try {
     const userResponse: Partial<IUser> = await getUserRequest();
+    console.log(userResponse);
     const user = mapUserResponseToUser(userResponse);
     thunkApi.dispatch(setDataUserAction(user));
   } catch (err) {
