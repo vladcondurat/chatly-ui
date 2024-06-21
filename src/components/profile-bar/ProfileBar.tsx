@@ -1,4 +1,10 @@
-import { PBContainer, PBWrapper, PBOption, PBOptionTextWrapper, PBOptionImg } from './styles';
+import {
+  PBContainer,
+  PBWrapper,
+  PBOption,
+  PBOptionTextWrapper,
+  PBOptionImg,
+} from './styles';
 import LockSvg from './assets/LockSvg.svg';
 import SearchBar from '../search-bar';
 import { useNavigate } from 'react-router-dom';
@@ -13,7 +19,9 @@ const ProfileBar = () => {
       <ProfileTopBar />
       <PBWrapper>
         <SearchBar />
-        <PBOption onClick={() => navigate(`${ROUTE__PROFILE}/privacy-and-security`)}>
+        <PBOption
+          onClick={() => navigate(`${ROUTE__PROFILE}/privacy-and-security`)}
+        >
           <PBOptionImg src={LockSvg} />
           <PBOptionTextWrapper>Privacy & Security</PBOptionTextWrapper>
         </PBOption>

@@ -1,7 +1,7 @@
 import { MIContainer, MIWrapper, MISvg, MITextArea } from './styles';
 import AttachSvg from './assets/AttachSvg.svg';
 import EmojiSvg from './assets/EmojiSvg.svg';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import IMessageContent from '../../../../types/message/IMessageContent';
 import { useAppDispatch } from '../../../../hooks/store-hooks';
 import { postMessageAsyncAction } from '../../../../store/actions/message-actions';
@@ -32,6 +32,12 @@ const MsgInput = ({ roomId }: { roomId: string }) => {
       textArea.style.height = `${textArea.scrollHeight}px`;
     }
   };
+
+  useEffect(() => {
+    if (textAreaRef.current) {
+      textAreaRef.current.focus();
+    }
+  }, [roomId]);
 
   const handleInput = () => {
     adjustTextAreaHeight();

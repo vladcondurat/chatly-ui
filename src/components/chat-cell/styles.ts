@@ -6,16 +6,20 @@ export const CCContainer = styled.div<{ $isSelected: boolean }>`
   width: 100%;
   height: fit-content;
   border-radius: 4px;
-  background-color: ${({ $isSelected }) => $isSelected && '#282D3C'};
   padding: 8px;
   gap: 8px;
   user-select: none;
+
+  @media (min-width: 500px) {
+    background-color: ${({ $isSelected }) => $isSelected && '#282D3C'};
+  }
 `;
 
 export const CCImage = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  object-fit: contain;
 `;
 
 export const CCChatName = styled.div`

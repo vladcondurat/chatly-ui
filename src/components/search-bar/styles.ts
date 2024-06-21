@@ -13,8 +13,7 @@ export const SBWrapper = styled.div`
   align-items: center;
   padding: 0 8px 0 8px;
   background-color: #2b2d33;
-  border-radius: 4px;
-  border-bottom: 1px solid #979aa0;
+  border-radius: 8px;
   color: white;
 `;
 

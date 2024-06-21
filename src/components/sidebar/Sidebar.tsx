@@ -1,11 +1,13 @@
 import { SBContainer, SBSvg, SBNavOptionContainer, SBTextWrapper } from './styles';
-import ChatSvg from './assets/ChatSvg.svg';
-import FriendsSvg from './assets/FriendsSvg.svg';
-import ProfileSvg from './assets/ProfileSvg.svg';
+import ChatSvg from '../../assets/ChatSvg.svg';
+import NewChatSvg from '../../assets/NewChatSvg.svg';
+import ProfileSvg from '../../assets/ProfileSvg.svg';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/store-hooks';
 import { selectedRoomSelector } from '../../store/selectors/room-selectors';
 import { ROUTE__ROOMS } from '../../router/constants';
+import { useState } from 'react';
+import NewChatModal from '../new-chat-modal';
 
 interface NavOption {
   src: string;
@@ -14,14 +16,17 @@ interface NavOption {
 }
 
 const Sidebar = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const closeModal = () => setIsModalOpen(false);
+
   const navigate = useNavigate();
   const selectedRoom = useAppSelector(selectedRoomSelector);
-  const selectedRoomId = selectedRoom?.id;
+  const selectedRoomId = selectedRoom ? selectedRoom.id : '';
 
   const navOptions: NavOption[] = [
     { src: ChatSvg, label: 'Chats', action: () => navigate(`${ROUTE__ROOMS}/${selectedRoomId}`) },
     { src: ProfileSvg, label: 'Profile', action: () => navigate('/profile') },
-    { src: FriendsSvg, label: 'New', action: () => alert('This is a popup!') },
+    { src: NewChatSvg, label: 'New', action: () => setIsModalOpen(true) },
   ];
 
   return (
@@ -32,6 +37,7 @@ const Sidebar = () => {
           <SBTextWrapper>{label}</SBTextWrapper>
         </SBNavOptionContainer>
       ))}
+      {isModalOpen && <NewChatModal onClose={closeModal} />}
     </SBContainer>
   );
 };

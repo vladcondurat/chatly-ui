@@ -8,10 +8,12 @@ export const TBContainer = styled.div`
   min-height: 64px;
   padding: 0 12px 0 12px;
   border-bottom: 1px solid #2e333a;
+  z-index: 2;
 `;
 
 export const TBLeftContainer = styled.div`
   display: flex;
+  align-items: center;
   gap: 12px;
 `;
 
@@ -31,8 +33,33 @@ export const TBTextContainer = styled.div`
   flex-direction: column;
 `;
 
+export const TBBackSvg = styled.img`
+  width: 20px;
+  height: 20px;
+
+  @media (min-width: 500px) {
+    display: none;
+  }
+`;
+
 export const TBChatImage = styled.img`
   width: 48px;
   height: 48px;
   border-radius: 50%;
+  object-fit: contain;
+`;
+
+export const TBOptionSvg = styled.img`
+  width: 20px;
+  height: 20px;
+`;
+
+export const TBOptionSvgWrapper = styled.div`
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  padding: 8px;
+`;
+export const TBOptionsContainer = styled.div`
+  display: flex;
+  gap: 16px;
 `;

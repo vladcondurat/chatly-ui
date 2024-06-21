@@ -33,10 +33,10 @@ export const PBOption = styled.div`
   gap: 12px;
   align-items: center;
   width: 100%;
-  padding: 2px 0 2px 0;
+  padding: 4px 4px;
   cursor: pointer;
 
-  @media (max-width: 800px) {
+  @media (max-width: 800px) and (min-width: 501px) {
     gap: 8px;
   }
 `;
@@ -46,7 +46,7 @@ export const PBOptionTextWrapper = styled.div`
   white-space: nowrap;
   font-size: 16px;
 
-  @media (max-width: 800px) {
+  @media (max-width: 800px) and (min-width: 501px) {
     font-size: 12px;
   }
 `;

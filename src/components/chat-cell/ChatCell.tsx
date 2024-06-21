@@ -1,5 +1,12 @@
-import { CCContainer, CCChatName, CCImage, CCLastMsgContainer, CCLastMsgTimeContainer, CCLastMsgTimeWrapper, CCTextWrapper } from './styles';
-import genericAvatarImage from '../../assets/generic-avatar.png';
+import {
+  CCContainer,
+  CCChatName,
+  CCImage,
+  CCLastMsgContainer,
+  CCLastMsgTimeContainer,
+  CCLastMsgTimeWrapper,
+  CCTextWrapper,
+} from './styles';
 import { useNavigate } from 'react-router-dom';
 import IRoomCard from '../../types/room/IRoomCard';
 import formatTime from '../../utils/formatTime';
@@ -15,7 +22,11 @@ const ChatCell = ({ props }: { props: IRoomCard }) => {
 
   const handleLastMessage = () => {
     if (lastMessage.content.textContent) {
-      return <CCLastMsgContainer>{lastMessage.content.textContent}</CCLastMsgContainer>;
+      return (
+        <CCLastMsgContainer>
+          {lastMessage.content.textContent}
+        </CCLastMsgContainer>
+      );
     }
     if (lastMessage.content.attachedImageUrl) {
       return <CCLastMsgContainer>Image</CCLastMsgContainer>;
@@ -24,14 +35,19 @@ const ChatCell = ({ props }: { props: IRoomCard }) => {
   };
 
   return (
-    <CCContainer onClick={() => navigate(`${ROUTE__ROOMS}/${id}`)} $isSelected={isRoomSelected}>
-      <CCImage src={genericAvatarImage} />
+    <CCContainer
+      onClick={() => navigate(`${ROUTE__ROOMS}/${id}`)}
+      $isSelected={isRoomSelected}
+    >
+      <CCImage src={details.imageUrl} />
       <CCTextWrapper>
         <CCChatName>{details.roomName}</CCChatName>
         {handleLastMessage()}
       </CCTextWrapper>
       <CCLastMsgTimeWrapper>
-        <CCLastMsgTimeContainer>{formatTime(lastMessage.createdAt)}</CCLastMsgTimeContainer>
+        <CCLastMsgTimeContainer>
+          {formatTime(lastMessage.createdAt)}
+        </CCLastMsgTimeContainer>
       </CCLastMsgTimeWrapper>
     </CCContainer>
   );

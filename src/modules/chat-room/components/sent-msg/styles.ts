@@ -10,7 +10,7 @@ export const SMContainer = styled.div`
   display: flex;
   max-width: 480px;
   width: fit-content;
-  padding: 8px 12px 8px 12px;
+  padding: 8px 12px;
   border-radius: 14px 14px 4px 14px;
   background-color: #1566a3;
   gap: 8px;
@@ -36,7 +36,12 @@ export const SMMsgTime = styled.div`
 
 export const SMTextWrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  gap: 8px;
+
+  &:hover .options-wrapper {
+    opacity: 1;
+    visibility: visible;
+  }
 `;
 
 export const SMLoading = styled.div`
@@ -49,4 +54,23 @@ export const SMError = styled.div`
   padding-left: 12px;
   font-size: 12px;
   color: red;
+`;
+
+export const SMOptionsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+`;
+
+export const SMOptions = styled.div`
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  font-size: 20px;
+
+  &:hover {
+    color: white;
+  }
 `;

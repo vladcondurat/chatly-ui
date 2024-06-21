@@ -10,7 +10,11 @@ import { useAppDispatch, useAppSelector } from '../../hooks/store-hooks';
 import { fetchSelectedRoomAsyncAction } from '../../store/actions/room-actions';
 import { dataUserSelector } from '../../store/selectors/user-selectors';
 import { fetchUserAsyncAction } from '../../store/actions/user-actions';
-import { dataMessageSelector, isErrorMessageSelector, isLoadingMessageSelector } from '../../store/selectors/message-selectors';
+import {
+  dataMessageSelector,
+  isErrorMessageSelector,
+  isLoadingMessageSelector,
+} from '../../store/selectors/message-selectors';
 
 const ChatRoom = () => {
   const dispatch = useAppDispatch();
@@ -48,8 +52,19 @@ const ChatRoom = () => {
   const handleMessageRender = () => {
     return (
       <>
-        {room && room.messages && room.messages.map(msg => (msg.user.id === user.id ? <SentMsg key={msg.id} message={msg} /> : <ReceivedMsg key={msg.id} message={msg} />))}
-        {isLoadingMessage && sentMessage && <SentMsg message={sentMessage} isLoading />}
+        {room &&
+          user &&
+          room.messages &&
+          room.messages.map(msg =>
+            msg.user.id === user.id ? (
+              <SentMsg key={msg.id} message={msg} />
+            ) : (
+              <ReceivedMsg key={msg.id} message={msg} />
+            )
+          )}
+        {isLoadingMessage && sentMessage && (
+          <SentMsg message={sentMessage} isLoading />
+        )}
         {isErrorMessage && <SentMsg message={sentMessage} isError />}
         <div ref={lastMessageRef} />
       </>
@@ -58,7 +73,13 @@ const ChatRoom = () => {
 
   return (
     <CRContainer>
-      <TopBar />
+      {room && (
+        <TopBar
+          roomName={room.details.roomName}
+          imageUrl={room.details.imageUrl}
+          roomId={roomId}
+        />
+      )}
       <CRMsgWrapper>
         <CRMsgContainer>{handleMessageRender()}</CRMsgContainer>
       </CRMsgWrapper>

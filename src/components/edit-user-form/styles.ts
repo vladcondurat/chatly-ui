@@ -12,19 +12,6 @@ export const EFInputWrapper = styled.div`
   gap: 12px;
 `;
 
-export const EFButton = styled.button`
-  background-color: #1141fb;
-  height: 40px;
-  color: white;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-
-  &:hover {
-    background-color: #0d36d9;
-  }
-`;
-
 export const EFImageLabel = styled.label`
   display: flex;
   flex-direction: column;

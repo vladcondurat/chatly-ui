@@ -1,5 +1,6 @@
-import { toString } from 'lodash';
+import { isArray, toString } from 'lodash';
 import IUser from '../types/user/IUser';
+import IUsers from '../types/user/IUsersResponse';
 
 export const mapUserResponseToUser = (data: Partial<IUser>): IUser => {
   const user: IUser = {
@@ -10,4 +11,12 @@ export const mapUserResponseToUser = (data: Partial<IUser>): IUser => {
   };
 
   return user;
+};
+
+export const mapUsersResponseToUsers = (data: IUsers): IUser[] => {
+  if (!data || !isArray(data.users)) {
+    return [];
+  }
+
+  return data.users.map(user => mapUserResponseToUser(user));
 };
