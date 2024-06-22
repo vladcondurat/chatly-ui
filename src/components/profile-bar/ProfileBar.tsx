@@ -1,14 +1,7 @@
-import {
-  PBContainer,
-  PBWrapper,
-  PBOption,
-  PBOptionTextWrapper,
-  PBOptionImg,
-} from './styles';
+import { PBContainer, PBWrapper, PBOption, PBOptionTextWrapper, PBOptionImg } from './styles';
 import LockSvg from './assets/LockSvg.svg';
-import SearchBar from '../search-bar';
 import { useNavigate } from 'react-router-dom';
-import { ROUTE__PROFILE } from '../../router/constants';
+import { ROUTE__PRVIACY_POLICY } from '../../router/constants';
 import ProfileTopBar from './components/ProfileTopBar';
 
 const ProfileBar = () => {
@@ -18,10 +11,7 @@ const ProfileBar = () => {
     <PBContainer>
       <ProfileTopBar />
       <PBWrapper>
-        <SearchBar />
-        <PBOption
-          onClick={() => navigate(`${ROUTE__PROFILE}/privacy-and-security`)}
-        >
+        <PBOption onClick={() => navigate(ROUTE__PRVIACY_POLICY)}>
           <PBOptionImg src={LockSvg} />
           <PBOptionTextWrapper>Privacy & Security</PBOptionTextWrapper>
         </PBOption>

@@ -26,6 +26,9 @@ export const CCChatName = styled.div`
   font-size: 14px;
   font-weight: 600;
   color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const CCLastMsgTimeContainer = styled.div`

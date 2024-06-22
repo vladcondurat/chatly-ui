@@ -4,6 +4,7 @@ interface IRoomResponse {
   id: string;
   imageUrl: string;
   roomName: string;
+  isGroup: boolean;
   messages: IMessageResponse[];
 }
 

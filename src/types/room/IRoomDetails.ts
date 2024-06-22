@@ -1,5 +1,5 @@
 interface IRoomDetails {
-  imageUrl?: string;
+  imageUrl: string;
   roomName: string;
 }
 

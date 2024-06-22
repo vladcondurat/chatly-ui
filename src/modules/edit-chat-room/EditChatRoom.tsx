@@ -7,26 +7,36 @@ import {
   ERWrapper,
 } from './styles';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAppDispatch } from '../../hooks/store-hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/store-hooks';
 import EditChatForm from './components/edit-chat-form';
 import UserList from '../../components/user-list';
 import GoBackSvg from '../../assets/GoBackSvg.svg';
 import Button from '../../components/button';
 import { ROUTE__ROOMS } from '../../router/constants';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   fetchRoomsAsyncAction,
+  fetchSelectedRoomAsyncAction,
   leaveRoomAsyncAction,
   removeUserFromRoomAsyncAction,
 } from '../../store/actions/room-actions';
 import { fetchUsersInsideRoomAsyncAction } from '../../store/actions/user-actions';
+import { selectedRoomSelector } from '../../store/selectors/room-selectors';
 
 const EditChatRoom = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { roomId } = useParams();
+  const room = useAppSelector(selectedRoomSelector);
   const [selectedUserIds, setSelectedUserIds] = useState<string[]>([]);
   const [isAnySelected, setIsAnySelected] = useState(false);
+
+  useEffect(() => {
+    const fetchSelectedRoom = async () => {
+      await dispatch(fetchSelectedRoomAsyncAction({ roomId: roomId }));
+    };
+    fetchSelectedRoom();
+  }, [dispatch, roomId]);
 
   const handleSelectionChange = (userIds: string[]) => {
     setSelectedUserIds(userIds);
@@ -56,32 +66,31 @@ const EditChatRoom = () => {
 
   return (
     <ERContainer>
-      <ERWrapper>
-        <ERTopBarWrapper>
-          <ERGoBackSvg
-            src={GoBackSvg}
-            onClick={() => navigate(`${ROUTE__ROOMS}/${roomId}`)}
-          />
-          <div>Edit Chat Room</div>
-        </ERTopBarWrapper>
-        <EditChatForm />
-        <ERUserListWrapper>
-          <UserList
-            onSelectionChange={handleSelectionChange}
-            fetchType="insideRoom"
-            roomId={roomId}
-          />
-          <ERButtonsWrapper>
-            <Button
-              onClick={handleRemoveUsers}
-              disabled={!isAnySelected}
-              labelName="Remove"
-              isFull
+      {room && room.isGroup && (
+        <ERWrapper>
+          <ERTopBarWrapper>
+            <ERGoBackSvg src={GoBackSvg} onClick={() => navigate(`${ROUTE__ROOMS}/${roomId}`)} />
+            <div>Edit Chat Room</div>
+          </ERTopBarWrapper>
+          <EditChatForm />
+          <ERUserListWrapper>
+            <UserList
+              onSelectionChange={handleSelectionChange}
+              fetchType="insideRoom"
+              roomId={roomId}
             />
-            <Button onClick={handleLeaveRoom} labelName="Leave" isFull />
-          </ERButtonsWrapper>
-        </ERUserListWrapper>
-      </ERWrapper>
+            <ERButtonsWrapper>
+              <Button
+                onClick={handleRemoveUsers}
+                disabled={!isAnySelected}
+                labelName="Remove"
+                isFull
+              />
+              <Button onClick={handleLeaveRoom} labelName="Leave" isFull />
+            </ERButtonsWrapper>
+          </ERUserListWrapper>
+        </ERWrapper>
+      )}
     </ERContainer>
   );
 };

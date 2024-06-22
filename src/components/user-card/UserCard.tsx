@@ -1,10 +1,5 @@
 import IUser from '../../types/user/IUser';
-import {
-  UCAvatarImg,
-  UCCheckbox,
-  UCContainer,
-  UCDetailsWrapper,
-} from './styles';
+import { UCAvatarImg, UCCheckbox, UCContainer, UCDetailsWrapper, UCUsername } from './styles';
 
 interface UserCardProps {
   user: IUser;
@@ -16,8 +11,8 @@ const UserCard = ({ user, selected, onSelect }: UserCardProps) => {
   return (
     <UCContainer selected={selected} onClick={() => onSelect(user.id)}>
       <UCDetailsWrapper>
-        <UCAvatarImg src={`https://i.pravatar.cc/150?u=${user.id}`} />
-        <div>{user.username}</div>
+        <UCAvatarImg src={user.avatarUrl} />
+        <UCUsername>{user.username}</UCUsername>
       </UCDetailsWrapper>
       <UCCheckbox type="checkbox" checked={selected} readOnly />
     </UCContainer>

@@ -6,3 +6,4 @@ export const ROUTE__EDIT_ROOM = '/rooms/edit';
 export const ROUTE__ROOMS = '/rooms';
 export const ROUTE__PROFILE = '/profile';
 export const ROUTE__EDIT_PROFILE = '/profile/edit';
+export const ROUTE__PRVIACY_POLICY = '/profile/privacy-policy';

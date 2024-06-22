@@ -15,6 +15,7 @@ export const mapRoomResponseToRoom = (data: Partial<IRoomResponse>): IRoom => {
 
   const room: IRoom = {
     id: toString(data?.id),
+    isGroup: data?.isGroup,
     details: roomDetails,
     messages: data?.messages?.map(message => mapMessageResponseToMessage(message)),
   };

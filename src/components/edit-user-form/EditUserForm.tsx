@@ -6,10 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { EFWrapper, EFInputWrapper } from './styles';
 import { useAppDispatch, useAppSelector } from '../../hooks/store-hooks';
 import { dataUserSelector } from '../../store/selectors/user-selectors';
-import {
-  fetchUserAsyncAction,
-  updateUserAsyncAction,
-} from '../../store/actions/user-actions';
+import { fetchUserAsyncAction, updateUserAsyncAction } from '../../store/actions/user-actions';
 import Button from '../button';
 import { isFormDataEmpty } from '../../utils/isFormDataEmpty';
 
@@ -79,11 +76,7 @@ const EditUserForm: React.FC = () => {
           formTitle="Username"
           error={errors.username?.message}
         />
-        <InputForm
-          {...register('email')}
-          formTitle="Email"
-          error={errors.email?.message}
-        />
+        <InputForm {...register('email')} formTitle="Email" error={errors.email?.message} />
         <InputForm
           formTitle="Profile Picture"
           isFile
@@ -96,7 +89,6 @@ const EditUserForm: React.FC = () => {
           isFull
           disabled={isSubmitting}
           labelName={isSubmitting ? 'Loading...' : 'Save Changes'}
-          type="submit"
         />
       </EFInputWrapper>
     </EFWrapper>

@@ -8,12 +8,12 @@ export const RMWrapper = styled.div`
   gap: 8px;
 `;
 
-export const RMContainer = styled.div`
+export const RMContainer = styled.div<{ $isSameUser: boolean }>`
   display: flex;
   max-width: 484px;
   width: fit-content;
   padding: 8px 4px 8px 12px;
-  border-radius: 14px 14px 14px 4px;
+  border-radius: ${({ $isSameUser }) => ($isSameUser ? '14px 14px 14px 4px' : '14px')};
   background-color: #393d47;
   gap: 8px;
 `;
@@ -35,6 +35,11 @@ export const RMMsgTime = styled.div`
 `;
 
 export const RMAvatar = styled.img`
+  width: 36px;
+  height: 36px;
+`;
+
+export const RMAvatarPlaceholder = styled.div`
   width: 36px;
   height: 36px;
 `;

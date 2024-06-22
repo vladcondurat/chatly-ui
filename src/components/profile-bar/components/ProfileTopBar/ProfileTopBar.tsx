@@ -22,15 +22,14 @@ const ProfileTopBar = () => {
   return (
     <PTBContainer>
       <PTBImage src={avatarUrl} />
-      <PTBTextWrapper>
-        <PTBUsername>Vladcondurat</PTBUsername>
-        <PTBEmail>vladcondurat23@gmail.com</PTBEmail>
-      </PTBTextWrapper>
+      {user && (
+        <PTBTextWrapper>
+          <PTBUsername>{user.username}</PTBUsername>
+          <PTBEmail>{user.email}</PTBEmail>
+        </PTBTextWrapper>
+      )}
       <PTBModifyButtonWrapper>
-        <PTBModifyButton
-          src={PenSvg}
-          onClick={() => navigate(`${ROUTE__EDIT_PROFILE}`)}
-        />
+        <PTBModifyButton src={PenSvg} onClick={() => navigate(`${ROUTE__EDIT_PROFILE}`)} />
       </PTBModifyButtonWrapper>
     </PTBContainer>
   );

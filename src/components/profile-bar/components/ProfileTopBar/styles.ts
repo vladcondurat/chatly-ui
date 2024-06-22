@@ -14,6 +14,7 @@ export const PTBContainer = styled.div`
 export const PTBImage = styled.img`
   width: 60px;
   height: 60px;
+  object-fit: cover;
   border-radius: 50%;
 
   @media (max-width: 800px) and (min-width: 501px) {
@@ -24,9 +25,7 @@ export const PTBImage = styled.img`
 
 export const PTBTextWrapper = styled.div`
   display: flex;
-  width: 100%;
   flex-direction: column;
-  justify-content: center;
   overflow: hidden;
 
   @media (max-width: 800px) and (min-width: 501px) {
@@ -39,6 +38,7 @@ export const PTBUsername = styled.div`
   height: fit-content;
   font-weight: 600;
   color: white;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 `;
@@ -48,6 +48,7 @@ export const PTBEmail = styled.div`
   padding-top: 2px;
   height: fit-content;
   color: #838383;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 `;

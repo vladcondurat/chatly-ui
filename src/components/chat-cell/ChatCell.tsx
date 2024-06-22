@@ -22,32 +22,23 @@ const ChatCell = ({ props }: { props: IRoomCard }) => {
 
   const handleLastMessage = () => {
     if (lastMessage.content.textContent) {
-      return (
-        <CCLastMsgContainer>
-          {lastMessage.content.textContent}
-        </CCLastMsgContainer>
-      );
+      return <CCLastMsgContainer>{lastMessage.content.textContent}</CCLastMsgContainer>;
     }
     if (lastMessage.content.attachedImageUrl) {
       return <CCLastMsgContainer>Image</CCLastMsgContainer>;
     }
-    return <CCLastMsgContainer>Send your first message</CCLastMsgContainer>;
+    return <CCLastMsgContainer>New group chat</CCLastMsgContainer>;
   };
 
   return (
-    <CCContainer
-      onClick={() => navigate(`${ROUTE__ROOMS}/${id}`)}
-      $isSelected={isRoomSelected}
-    >
+    <CCContainer onClick={() => navigate(`${ROUTE__ROOMS}/${id}`)} $isSelected={isRoomSelected}>
       <CCImage src={details.imageUrl} />
       <CCTextWrapper>
         <CCChatName>{details.roomName}</CCChatName>
         {handleLastMessage()}
       </CCTextWrapper>
       <CCLastMsgTimeWrapper>
-        <CCLastMsgTimeContainer>
-          {formatTime(lastMessage.createdAt)}
-        </CCLastMsgTimeContainer>
+        <CCLastMsgTimeContainer>{formatTime(lastMessage.createdAt)}</CCLastMsgTimeContainer>
       </CCLastMsgTimeWrapper>
     </CCContainer>
   );

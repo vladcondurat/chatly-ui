@@ -9,11 +9,37 @@ export const SMWrapper = styled.div`
 export const SMContainer = styled.div`
   display: flex;
   max-width: 480px;
-  width: fit-content;
+  width: 100%;
   padding: 8px 12px;
-  border-radius: 14px 14px 4px 14px;
+  border-radius: 16px 16px 4px 16px;
   background-color: #1566a3;
   gap: 8px;
+`;
+
+export const SMContainerWithImg = styled.div`
+  display: flex;
+  max-width: 300px;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 0px 0px 4px 16px;
+  background-color: #1566a3;
+  gap: 8px;
+`;
+
+export const SMContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`;
+
+export const SMDefaultImgTextContainer = styled.div`
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  display: flex;
+  flex-grow: 1;
+  color: white;
+  font-style: italic;
 `;
 
 export const SMTextContainer = styled.div`
@@ -23,6 +49,32 @@ export const SMTextContainer = styled.div`
   display: flex;
   flex-grow: 1;
   color: white;
+`;
+
+export const SMImgContainer = styled.img`
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 16px 16px 0px 0px;
+`;
+
+export const SMFileDownloadLink = styled.a`
+  color: #007bff;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+export const SMFileContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
 `;
 
 export const SMMsgTime = styled.div`

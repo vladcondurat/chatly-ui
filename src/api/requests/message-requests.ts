@@ -1,15 +1,29 @@
 import { AxiosResponse } from 'axios';
 import { getApi } from '../Api';
-import IMessage from '../../types/message/IMessage';
-import IMessageContent from '../../types/message/IMessageContent';
+import IMessageResponse from '../../types/message/IMessageResponse';
 
-export const postMessageRequest = async (data: Partial<IMessageContent>, roomId: string): Promise<IMessage> => {
-  const response: AxiosResponse<IMessage> = await getApi().post(`/messages/${roomId}`, data);
+export const postMessageRequest = async (
+  data: FormData,
+  roomId: string
+): Promise<Partial<IMessageResponse>> => {
+  for (const [key, value] of data.entries()) {
+    console.log(`${key}:`, value);
+  }
+  const response: AxiosResponse<Partial<IMessageResponse>> = await getApi().post(
+    `/messages/${roomId}`,
+    data
+  );
   return response.data;
 };
 
-export const updateMessageRequest = async (data: Partial<IMessageContent>, messageId: string): Promise<IMessage> => {
-  const response: AxiosResponse<IMessage> = await getApi().put(`/messages/${messageId}`, data);
+export const updateMessageRequest = async (
+  data: FormData,
+  messageId: string
+): Promise<Partial<IMessageResponse>> => {
+  const response: AxiosResponse<Partial<IMessageResponse>> = await getApi().put(
+    `/messages/${messageId}`,
+    data
+  );
   return response.data;
 };
 

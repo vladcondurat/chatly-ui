@@ -7,7 +7,7 @@ import UserList from '../user-list';
 import Button from '../button';
 import { NCInputWrapper } from './styles';
 import { useAppDispatch, useAppSelector } from '../../hooks/store-hooks';
-import { postRoomAsyncAction } from '../../store/actions/room-actions';
+import { fetchRoomsAsyncAction, postRoomAsyncAction } from '../../store/actions/room-actions';
 import {
   isErrorRoomSelector,
   isLoadingRoomSelector,
@@ -54,6 +54,7 @@ const NewChatModal = ({ onClose }: { onClose: () => void }) => {
 
   const onSubmit: SubmitHandler<FormFields> = async data => {
     await dispatch(postRoomAsyncAction({ userIds: data.userIds }));
+    await dispatch(fetchRoomsAsyncAction());
     setIsSubmitted(true);
   };
 

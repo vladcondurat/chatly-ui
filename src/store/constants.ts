@@ -1,3 +1,5 @@
+export const APP__SET_MODAL_OPEN = '[APP] SET_MODAL_OPEN';
+
 export const AUTH__SET_STATE = '[AUTH] SET_STATE';
 export const AUTH__SET_TOKEN = '[AUTH] SET_TOKEN';
 export const AUTH__SET_LOADING = '[AUTH] SET_LOADING';

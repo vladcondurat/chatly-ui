@@ -21,6 +21,9 @@ export const TBChatNameWrapper = styled.div`
   font-size: 16px;
   font-weight: 500;
   color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const TBOtherDetailsWrapper = styled.div`

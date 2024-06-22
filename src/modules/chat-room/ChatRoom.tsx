@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CRContainer, CRMsgContainer, CRMsgWrapper } from './styles';
 import TopBar from './components/top-bar';
 import SentMsg from './components/sent-msg';
@@ -15,10 +15,12 @@ import {
   isErrorMessageSelector,
   isLoadingMessageSelector,
 } from '../../store/selectors/message-selectors';
+import IMessage from '../../types/message/IMessage';
 
 const ChatRoom = () => {
   const dispatch = useAppDispatch();
   const { roomId } = useParams();
+  const [messageToEdit, setMessageToEdit] = useState<IMessage | null>(null);
 
   useEffect(() => {
     dispatch(fetchSelectedRoomAsyncAction({ roomId }));
@@ -44,6 +46,7 @@ const ChatRoom = () => {
 
   useEffect(() => {
     if (!isLoadingMessage && !isErrorMessage && sentMessage) {
+      setMessageToEdit(null);
       // Temporary solution to reload the page after sending a message
       window.location.reload();
     }
@@ -55,14 +58,29 @@ const ChatRoom = () => {
         {room &&
           user &&
           room.messages &&
-          room.messages.map(msg =>
-            msg.user.id === user.id ? (
-              <SentMsg key={msg.id} message={msg} />
+          room.messages.map((msg, index) => {
+            const isSameUser = index > 0 && room.messages[index - 1].user.id === msg.user.id;
+            const isLastFromUser =
+              index === room.messages.length - 1 ||
+              room.messages[index + 1].user.id !== msg.user.id;
+
+            return msg.user.id === user.id ? (
+              <SentMsg
+                key={msg.id}
+                message={msg}
+                roomId={roomId}
+                onEditMessage={setMessageToEdit}
+              />
             ) : (
-              <ReceivedMsg key={msg.id} message={msg} />
-            )
-          )}
-        {isLoadingMessage && sentMessage && (
+              <ReceivedMsg
+                key={msg.id}
+                message={msg}
+                isSameUser={isSameUser}
+                isLastFromUser={isLastFromUser}
+              />
+            );
+          })}
+        {isLoadingMessage && !messageToEdit && sentMessage && (
           <SentMsg message={sentMessage} isLoading />
         )}
         {isErrorMessage && <SentMsg message={sentMessage} isError />}
@@ -73,17 +91,11 @@ const ChatRoom = () => {
 
   return (
     <CRContainer>
-      {room && (
-        <TopBar
-          roomName={room.details.roomName}
-          imageUrl={room.details.imageUrl}
-          roomId={roomId}
-        />
-      )}
+      {room && <TopBar room={room} />}
       <CRMsgWrapper>
         <CRMsgContainer>{handleMessageRender()}</CRMsgContainer>
       </CRMsgWrapper>
-      <MsgInput roomId={roomId} />
+      <MsgInput roomId={roomId} messageToEdit={messageToEdit} setMessageToEdit={setMessageToEdit} />
     </CRContainer>
   );
 };

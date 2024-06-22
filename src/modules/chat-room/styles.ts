@@ -37,7 +37,7 @@ export const CRMsgContainer = styled.div`
   }
 
   @media (max-width: 500px) {
-    padding: 0 8px 0 80px;
+    padding: 0 8px 0 8px;
   }
 `;
 

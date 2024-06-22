@@ -4,7 +4,21 @@ export const MIContainer = styled.div`
   display: flex;
   flex-grow: 1;
   height: fit-content;
+`;
 
+export const MIEditMessageLabel = styled.div`
+  display: flex;
+  color: #8a8a8a;
+  padding: 8px;
+  gap: 16px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+`;
+
+export const MIEditMessageLabelWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   padding: 16px 40px 16px 40px;
 
   @media (max-width: 800px) {
@@ -49,7 +63,29 @@ export const MITextArea = styled.textarea`
   }
 `;
 
-export const MISvg = styled.img`
-  width: 24px;
-  height: 24px;
+export const MIImagePreviewContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+export const MIImagePreview = styled.div`
+  position: relative;
+`;
+
+export const MIImage = styled.img`
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+`;
+
+export const MIClosePreview = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 4px;
+  border-radius: 50%;
+  cursor: pointer;
 `;

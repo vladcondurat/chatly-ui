@@ -3,11 +3,12 @@ import ChatSvg from '../../assets/ChatSvg.svg';
 import NewChatSvg from '../../assets/NewChatSvg.svg';
 import ProfileSvg from '../../assets/ProfileSvg.svg';
 import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../../hooks/store-hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/store-hooks';
 import { selectedRoomSelector } from '../../store/selectors/room-selectors';
-import { ROUTE__ROOMS } from '../../router/constants';
+import { ROUTE__PROFILE, ROUTE__ROOMS } from '../../router/constants';
 import { useState } from 'react';
 import NewChatModal from '../new-chat-modal';
+import { setAppIsModalOpenAction } from '../../store/actions/app-sync-actions';
 
 interface NavOption {
   src: string;
@@ -16,17 +17,27 @@ interface NavOption {
 }
 
 const Sidebar = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const closeModal = () => setIsModalOpen(false);
-
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const selectedRoom = useAppSelector(selectedRoomSelector);
   const selectedRoomId = selectedRoom ? selectedRoom.id : '';
 
+  const handleModalOpen = async () => {
+    setIsModalOpen(true);
+    await dispatch(setAppIsModalOpenAction(true));
+  };
+
+  const handleModalClose = async () => {
+    setIsModalOpen(false);
+    await dispatch(setAppIsModalOpenAction(false));
+  };
+
   const navOptions: NavOption[] = [
     { src: ChatSvg, label: 'Chats', action: () => navigate(`${ROUTE__ROOMS}/${selectedRoomId}`) },
-    { src: ProfileSvg, label: 'Profile', action: () => navigate('/profile') },
-    { src: NewChatSvg, label: 'New', action: () => setIsModalOpen(true) },
+    { src: ProfileSvg, label: 'Profile', action: () => navigate(ROUTE__PROFILE) },
+    { src: NewChatSvg, label: 'New', action: handleModalOpen },
   ];
 
   return (
@@ -37,7 +48,7 @@ const Sidebar = () => {
           <SBTextWrapper>{label}</SBTextWrapper>
         </SBNavOptionContainer>
       ))}
-      {isModalOpen && <NewChatModal onClose={closeModal} />}
+      {isModalOpen && <NewChatModal onClose={handleModalClose} />}
     </SBContainer>
   );
 };
