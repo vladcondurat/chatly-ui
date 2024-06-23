@@ -1,6 +1,6 @@
-import IUserData from '../../types/user/IUser';
-import usersAdapter from '../adaptors/users-adapter';
-import { RootState } from '../index';
+import { RootState } from '@app/store';
+import usersAdapter from '@app/store/adaptors/users-adapter';
+import IUserData from '@app/types/user/IUser';
 
 const usersSelectors = usersAdapter.getSelectors<RootState>(state => state.user);
 

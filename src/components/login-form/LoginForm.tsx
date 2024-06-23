@@ -1,18 +1,20 @@
-import InputForm from '../input-form';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { z } from 'zod';
 import { useEffect } from 'react';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { LFWrapper, LFButton, LFInputWrapper } from './styles';
-import { useAppDispatch, useAppSelector } from '../../hooks/store-hooks';
-import { loginAuthActionAsync } from '../../store/actions/auth-actions';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+
+import InputForm from '@app/components/input-form';
+import { useAppDispatch, useAppSelector } from '@app/hooks/store-hooks';
+import { ROUTE__ROOMS } from '@app/router/constants';
+import { loginAuthActionAsync } from '@app/store/actions/auth-actions';
 import {
   isLoggedInAuthSelector,
   isLoginErrorAuthSelector,
   loginErrorAuthSelector,
-} from '../../store/selectors/auth-selectors';
-import { useNavigate } from 'react-router-dom';
-import { ROUTE__ROOMS } from '../../router/constants';
+} from '@app/store/selectors/auth-selectors';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+
+import { LFButton, LFInputWrapper, LFWrapper } from './styles';
 
 const schema = z.object({
   username: z.string().min(3).max(20),
@@ -25,6 +27,11 @@ const schema = z.object({
 type FormFields = z.infer<typeof schema>;
 
 const LoginForm = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const isLoginError = useAppSelector(isLoginErrorAuthSelector);
+  const loginError = useAppSelector(loginErrorAuthSelector);
+  const isAuth = useAppSelector(isLoggedInAuthSelector);
   const {
     register,
     handleSubmit,
@@ -32,16 +39,8 @@ const LoginForm = () => {
     formState: { errors, isSubmitting },
   } = useForm<FormFields>({ resolver: zodResolver(schema) });
 
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const isLoginError = useAppSelector(isLoginErrorAuthSelector);
-  const loginError = useAppSelector(loginErrorAuthSelector);
-  const isAuth = useAppSelector(isLoggedInAuthSelector);
-
   const onSubmit: SubmitHandler<FormFields> = async data => {
-    await dispatch(
-      loginAuthActionAsync({ username: data.username, password: data.password })
-    );
+    await dispatch(loginAuthActionAsync({ username: data.username, password: data.password }));
   };
 
   useEffect(() => {

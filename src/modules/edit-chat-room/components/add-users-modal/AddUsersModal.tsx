@@ -1,21 +1,23 @@
 import { useEffect, useState } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { AMInputWrapper } from './styles';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/store-hooks';
+
+import Button from '@app/components/button';
+import LoadingSpinner from '@app/components/loading-spinner';
+import Modal from '@app/components/modal/Modal';
+import UserList from '@app/components/user-list';
+import { useAppDispatch, useAppSelector } from '@app/hooks/store-hooks';
+import { ROUTE__ROOMS } from '@app/router/constants';
+import { addUsersToRoomAsyncAction } from '@app/store/actions/room-actions';
 import {
   isErrorRoomSelector,
   isLoadingRoomSelector,
   selectedRoomSelector,
-} from '../../../../store/selectors/room-selectors';
-import { addUsersToRoomAsyncAction } from '../../../../store/actions/room-actions';
-import { ROUTE__ROOMS } from '../../../../router/constants';
-import Modal from '../../../../components/modal/Modal';
-import LoadingSpinner from '../../../../components/loading-spinner';
-import UserList from '../../../../components/user-list';
-import Button from '../../../../components/button';
+} from '@app/store/selectors/room-selectors';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+
+import { AMInputWrapper } from './styles';
 
 const schema = z.object({
   userIds: z.array(z.string()).min(1),
@@ -23,7 +25,11 @@ const schema = z.object({
 
 type FormFields = z.infer<typeof schema>;
 
-const AddUsersModal = ({ onClose }: { onClose: () => void }) => {
+interface AddUsersModalProps {
+  onClose: () => void;
+}
+
+const AddUsersModal = ({ onClose }: AddUsersModalProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const isError = useAppSelector(isErrorRoomSelector);

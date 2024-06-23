@@ -1,11 +1,13 @@
-import { MNContainer, MNSvg, MNNavOptionContainer } from './styles';
-import ChatSvg from '../../assets/ChatSvg.svg';
-import NewChatSvg from '../../assets/NewChatSvg.svg';
-import ProfileSvg from '../../assets/ProfileSvg.svg';
-import { useNavigate } from 'react-router-dom';
-import { ROUTE__ROOMS } from '../../router/constants';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import ChatSvg from '@app/assets/ChatSvg.svg';
+import NewChatSvg from '@app/assets/NewChatSvg.svg';
+import ProfileSvg from '@app/assets/ProfileSvg.svg';
+
+import { ROUTE__ROOMS } from '../../router/constants';
 import NewChatModal from '../new-chat-modal';
+import { MNContainer, MNNavOptionContainer, MNSvg } from './styles';
 
 interface INavOption {
   src: string;

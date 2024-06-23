@@ -1,44 +1,45 @@
 import { useEffect, useRef, useState } from 'react';
-import { CRContainer, CRMsgContainer, CRMsgWrapper } from './styles';
-import TopBar from './components/top-bar';
-import SentMsg from './components/sent-msg';
-import ReceivedMsg from './components/received-msg';
-import MsgInput from './components/msg-input';
 import { useParams } from 'react-router-dom';
-import { selectedRoomSelector } from '../../store/selectors/room-selectors';
-import { useAppDispatch, useAppSelector } from '../../hooks/store-hooks';
-import { fetchSelectedRoomAsyncAction } from '../../store/actions/room-actions';
-import { dataUserSelector } from '../../store/selectors/user-selectors';
-import { fetchUserAsyncAction } from '../../store/actions/user-actions';
+
+import { useAppDispatch, useAppSelector } from '@app/hooks/store-hooks';
+import { fetchSelectedRoomAsyncAction } from '@app/store/actions/room-actions';
+import { fetchUserAsyncAction } from '@app/store/actions/user-actions';
 import {
   dataMessageSelector,
   isErrorMessageSelector,
   isLoadingMessageSelector,
-} from '../../store/selectors/message-selectors';
-import IMessage from '../../types/message/IMessage';
+} from '@app/store/selectors/message-selectors';
+import { selectedRoomSelector } from '@app/store/selectors/room-selectors';
+import { dataUserSelector } from '@app/store/selectors/user-selectors';
+import IMessage from '@app/types/message/IMessage';
+
+import TopBar from './components/chat-top-bar';
+import MsgInput from './components/msg-input';
+import ReceivedMsg from './components/received-msg';
+import SentMsg from './components/sent-msg';
+import { CRContainer, CRMsgContainer, CRMsgWrapper } from './styles';
 
 const ChatRoom = () => {
   const dispatch = useAppDispatch();
-  const { roomId } = useParams();
-  const [messageToEdit, setMessageToEdit] = useState<IMessage | null>(null);
-
-  useEffect(() => {
-    dispatch(fetchSelectedRoomAsyncAction({ roomId }));
-    dispatch(fetchUserAsyncAction());
-  }, [dispatch, roomId]);
-
   const room = useAppSelector(selectedRoomSelector);
   const user = useAppSelector(dataUserSelector);
   const isLoadingMessage = useAppSelector(isLoadingMessageSelector);
   const isErrorMessage = useAppSelector(isErrorMessageSelector);
   const sentMessage = useAppSelector(dataMessageSelector);
+  const { roomId } = useParams();
   const lastMessageRef = useRef<HTMLDivElement>(null);
+  const [messageToEdit, setMessageToEdit] = useState<IMessage | null>(null);
 
   const scrollToLastMessage = () => {
     if (lastMessageRef.current) {
       lastMessageRef.current.scrollIntoView({ behavior: 'auto' });
     }
   };
+
+  useEffect(() => {
+    dispatch(fetchSelectedRoomAsyncAction({ roomId }));
+    dispatch(fetchUserAsyncAction());
+  }, [dispatch, roomId]);
 
   useEffect(() => {
     scrollToLastMessage();
@@ -77,6 +78,7 @@ const ChatRoom = () => {
                 message={msg}
                 isSameUser={isSameUser}
                 isLastFromUser={isLastFromUser}
+                isGroup={room.isGroup}
               />
             );
           })}
@@ -91,7 +93,7 @@ const ChatRoom = () => {
 
   return (
     <CRContainer>
-      {room && <TopBar room={room} />}
+      {room && <TopBar details={room.details} id={room.id} isGroup={room.isGroup} />}
       <CRMsgWrapper>
         <CRMsgContainer>{handleMessageRender()}</CRMsgContainer>
       </CRMsgWrapper>

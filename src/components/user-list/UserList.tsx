@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
-import UserCard from '../user-card';
-import { ULCardWrapper, ULContainer, ULErrorContainer } from './styles';
-import { useAppDispatch, useAppSelector } from '../../hooks/store-hooks';
-import { allUsersSelector } from '../../store/selectors/user-selectors';
+
+import SearchBar from '@app/components/search-bar';
+import UserCard from '@app/components/user-card';
+import { useAppDispatch, useAppSelector } from '@app/hooks/store-hooks';
 import {
   fetchAllUsersAsyncAction,
   fetchUsersInsideRoomAsyncAction,
   fetchUsersOutsideRoomAsyncAction,
-} from '../../store/actions/user-actions';
-import SearchBar from '../search-bar';
+} from '@app/store/actions/user-actions';
+import { allUsersSelector } from '@app/store/selectors/user-selectors';
+
+import { ULCardWrapper, ULContainer, ULErrorContainer } from './styles';
 
 interface UserListProps {
   onSelectionChange: (selectedUserIds: string[]) => void;

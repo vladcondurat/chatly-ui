@@ -1,6 +1,7 @@
 import { AxiosResponse } from 'axios';
+
+import IMessageResponse from '../../types/responses/IMessageResponse';
 import { getApi } from '../Api';
-import IMessageResponse from '../../types/message/IMessageResponse';
 
 export const postMessageRequest = async (
   data: FormData,

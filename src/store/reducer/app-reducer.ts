@@ -1,6 +1,6 @@
+import { setAppIsModalOpenAction } from '@app/store/actions/app-sync-actions';
+import IAppState from '@app/types/app/IAppState';
 import { createReducer } from '@reduxjs/toolkit';
-import { setAppIsModalOpenAction } from '../actions/app-sync-actions';
-import IAppState from '../../types/app/IAppState';
 
 const initialState: IAppState = {
   isAppModalOpen: false,

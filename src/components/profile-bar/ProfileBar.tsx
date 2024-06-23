@@ -1,8 +1,10 @@
-import { PBContainer, PBWrapper, PBOption, PBOptionTextWrapper, PBOptionImg } from './styles';
-import LockSvg from './assets/LockSvg.svg';
 import { useNavigate } from 'react-router-dom';
-import { ROUTE__PRVIACY_POLICY } from '../../router/constants';
+
+import { ROUTE__PRVIACY_POLICY } from '@app/router/constants';
+import { Lock } from 'lucide-react';
+
 import ProfileTopBar from './components/ProfileTopBar';
+import { PBContainer, PBOption, PBOptionTextWrapper, PBWrapper } from './styles';
 
 const ProfileBar = () => {
   const navigate = useNavigate();
@@ -12,17 +14,17 @@ const ProfileBar = () => {
       <ProfileTopBar />
       <PBWrapper>
         <PBOption onClick={() => navigate(ROUTE__PRVIACY_POLICY)}>
-          <PBOptionImg src={LockSvg} />
+          <Lock size={16} color="#ffffff" strokeWidth={1.5} />
           <PBOptionTextWrapper>Privacy & Security</PBOptionTextWrapper>
         </PBOption>
 
-        <PBOption>
-          <PBOptionImg src={LockSvg} />
+        <PBOption onClick={() => navigate(ROUTE__PRVIACY_POLICY)}>
+          <Lock size={16} color="#ffffff" strokeWidth={1.5} />
           <PBOptionTextWrapper>Privacy & Security</PBOptionTextWrapper>
         </PBOption>
 
-        <PBOption>
-          <PBOptionImg src={LockSvg} />
+        <PBOption onClick={() => navigate(ROUTE__PRVIACY_POLICY)}>
+          <Lock size={16} color="#ffffff" strokeWidth={1.5} />
           <PBOptionTextWrapper>Privacy & Security</PBOptionTextWrapper>
         </PBOption>
       </PBWrapper>

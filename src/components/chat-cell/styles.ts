@@ -19,7 +19,7 @@ export const CCImage = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  object-fit: contain;
+  object-fit: cover;
 `;
 
 export const CCChatName = styled.div`
@@ -61,6 +61,7 @@ export const CCTextWrapper = styled.div`
   width: 100%;
   flex-direction: column;
   overflow: hidden;
+
   @media (max-width: 800px) and (min-width: 501px) {
     display: none;
   }

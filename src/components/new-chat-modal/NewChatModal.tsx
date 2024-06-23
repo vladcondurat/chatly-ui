@@ -1,21 +1,23 @@
 import { useEffect, useState } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import Modal from '../modal/Modal';
-import UserList from '../user-list';
-import Button from '../button';
-import { NCInputWrapper } from './styles';
-import { useAppDispatch, useAppSelector } from '../../hooks/store-hooks';
-import { fetchRoomsAsyncAction, postRoomAsyncAction } from '../../store/actions/room-actions';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+
+import Button from '@app/components/button';
+import LoadingSpinner from '@app/components/loading-spinner';
+import Modal from '@app/components/modal/Modal';
+import UserList from '@app/components/user-list';
+import { useAppDispatch, useAppSelector } from '@app/hooks/store-hooks';
+import { ROUTE__ROOMS } from '@app/router/constants';
+import { fetchRoomsAsyncAction, postRoomAsyncAction } from '@app/store/actions/room-actions';
 import {
   isErrorRoomSelector,
   isLoadingRoomSelector,
   selectedRoomSelector,
-} from '../../store/selectors/room-selectors';
-import { useNavigate } from 'react-router-dom';
-import LoadingSpinner from '../loading-spinner';
-import { ROUTE__ROOMS } from '../../router/constants';
+} from '@app/store/selectors/room-selectors';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+
+import { NCInputWrapper } from './styles';
 
 const schema = z.object({
   userIds: z.array(z.string()).min(1),
@@ -23,7 +25,11 @@ const schema = z.object({
 
 type FormFields = z.infer<typeof schema>;
 
-const NewChatModal = ({ onClose }: { onClose: () => void }) => {
+interface NewChatModalProps {
+  onClose: () => void;
+}
+
+const NewChatModal = ({ onClose }: NewChatModalProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const isError = useAppSelector(isErrorRoomSelector);

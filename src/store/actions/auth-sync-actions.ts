@@ -1,4 +1,3 @@
-import { createAction } from '@reduxjs/toolkit';
 import {
   AUTH__RESET_DATA,
   AUTH__SET_IS_LOGIN_ERROR,
@@ -8,7 +7,8 @@ import {
   AUTH__SET_REGISTER_ERROR,
   AUTH__SET_STATE,
   AUTH__SET_TOKEN,
-} from '../constants';
+} from '@app/store/constants';
+import { createAction } from '@reduxjs/toolkit';
 
 export const setTokenAuthAction = createAction<string>(AUTH__SET_TOKEN);
 export const setStateAuthAction = createAction<boolean>(AUTH__SET_STATE);

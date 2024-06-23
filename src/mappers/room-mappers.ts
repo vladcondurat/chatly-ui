@@ -1,16 +1,18 @@
+import IGetRoomsResponse from '@app/types/responses/IGetRoomsResponse';
+import IRoomCardResponse from '@app/types/responses/IRoomCardResponse';
+import IRoomResponse from '@app/types/responses/IRoomResponse';
+import IRoom from '@app/types/room/IRoom';
+import IRoomCard from '@app/types/room/IRoomCard';
+import IRoomDetails from '@app/types/room/IRoomDetails';
 import { isArray, toString } from 'lodash';
-import IRoom from '../types/room/IRoom';
-import IGetRoomsResponse from '../types/room/IGetRoomsResponse';
-import IRoomCard from '../types/room/IRoomCard';
-import IRoomDetails from '../types/room/IRoomDetails';
-import IRoomCardResponse from '../types/room/IRoomCardResponse';
+
 import { mapMessageResponseToMessage } from './message-mappers';
-import IRoomResponse from '../types/room/IRoomResponse';
 
 export const mapRoomResponseToRoom = (data: Partial<IRoomResponse>): IRoom => {
   const roomDetails: IRoomDetails = {
     roomName: data?.roomName,
     imageUrl: data?.imageUrl,
+    lastActive: data?.lastActive,
   };
 
   const room: IRoom = {
@@ -27,6 +29,7 @@ export const mapRoomCardResponseToRoomCard = (data: Partial<IRoomCardResponse>):
   const roomDetails: IRoomDetails = {
     roomName: data?.roomName,
     imageUrl: data?.imageUrl,
+    lastActive: data?.lastActive,
   };
 
   const room: IRoomCard = {

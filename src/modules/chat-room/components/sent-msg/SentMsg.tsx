@@ -1,23 +1,24 @@
+import { useAppDispatch } from '@app/hooks/store-hooks';
+import { deleteMessageAsyncAction } from '@app/store/actions/message-actions';
+import { fetchSelectedRoomAsyncAction } from '@app/store/actions/room-actions';
+import IMessage from '@app/types/message/IMessage';
+import formatTime from '@app/utils/formatTime';
 import { Pen, Trash } from 'lucide-react';
-import { useAppDispatch } from '../../../../hooks/store-hooks';
-import { deleteMessageAsyncAction } from '../../../../store/actions/message-actions';
-import { fetchSelectedRoomAsyncAction } from '../../../../store/actions/room-actions';
-import IMessage from '../../../../types/message/IMessage';
-import formatTime from '../../../../utils/formatTime';
+
 import {
   SMContainer,
+  SMContainerWithImg,
+  SMContentWrapper,
+  SMDefaultImgTextContainer,
   SMError,
+  SMImgContainer,
   SMLoading,
   SMMsgTime,
+  SMOptions,
+  SMOptionsWrapper,
   SMTextContainer,
   SMTextWrapper,
   SMWrapper,
-  SMOptionsWrapper,
-  SMOptions,
-  SMImgContainer,
-  SMContentWrapper,
-  SMContainerWithImg,
-  SMDefaultImgTextContainer,
 } from './styles';
 
 interface ISentMsgProps {
@@ -30,9 +31,11 @@ interface ISentMsgProps {
 
 const SentMsg = ({ message, roomId, isLoading, isError, onEditMessage }: ISentMsgProps) => {
   const dispatch = useAppDispatch();
+
   if (message === null) {
     return null;
   }
+
   const { content, createdAt } = message;
 
   const handleDelete = async () => {

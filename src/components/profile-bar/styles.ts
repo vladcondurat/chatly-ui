@@ -30,7 +30,7 @@ export const PBWrapper = styled.div`
 
 export const PBOption = styled.div`
   display: flex;
-  gap: 12px;
+  gap: 8px;
   align-items: center;
   width: 100%;
   padding: 4px 4px;
@@ -49,8 +49,4 @@ export const PBOptionTextWrapper = styled.div`
   @media (max-width: 800px) and (min-width: 501px) {
     font-size: 12px;
   }
-`;
-
-export const PBOptionImg = styled.img`
-  height: 16px;
 `;

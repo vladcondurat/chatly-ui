@@ -1,7 +1,12 @@
+import roomsAdapter from '@app/store/adaptors/rooms-adapter';
+import {
+  setIsErrorRoomAction,
+  setLoadingRoomAction,
+  setRoomsAction,
+  setSelectedRoomAction,
+} from '@app/store/actions/room-sync-actions';
+import IRoomState from '@app/types/room/IRoomState';
 import { createReducer } from '@reduxjs/toolkit';
-import IRoomState from '../../types/room/IRoomState';
-import roomsAdapter from '../adaptors/rooms-adapter';
-import { setIsErrorRoomAction, setLoadingRoomAction, setRoomsAction, setSelectedRoomAction } from '../actions/room-sync-actions';
 
 const initialState: IRoomState = {
   rooms: [],
@@ -15,7 +20,7 @@ const roomReducer = createReducer(roomsAdapter.getInitialState(initialState), bu
     .addCase(setRoomsAction, roomsAdapter.setAll)
     .addCase(setSelectedRoomAction, (state, action) => ({ ...state, selectedRoom: action.payload }))
     .addCase(setLoadingRoomAction, (state, action) => ({ ...state, loading: action.payload }))
-    .addCase(setIsErrorRoomAction, (state, action) => ({ ...state, isError: action.payload })),
+    .addCase(setIsErrorRoomAction, (state, action) => ({ ...state, isError: action.payload }))
 );
 
 export default roomReducer;

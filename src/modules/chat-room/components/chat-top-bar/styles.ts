@@ -34,6 +34,11 @@ export const TBOtherDetailsWrapper = styled.div`
 export const TBTextContainer = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
+
+  @media (max-width: 320px) {
+    display: none;
+  }
 `;
 
 export const TBBackSvg = styled.img`
@@ -49,7 +54,7 @@ export const TBChatImage = styled.img`
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  object-fit: contain;
+  object-fit: cover;
 `;
 
 export const TBOptionSvg = styled.img`

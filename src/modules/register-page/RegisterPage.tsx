@@ -1,6 +1,15 @@
 import { useNavigate } from 'react-router-dom';
-import { RPContainer, RPTitleWrapper, RPFormWrapper, RPLoginTextWrapper, RPTextContainer, RPTextWrapper } from './styles';
-import RegisterForm from '../../components/register-form';
+
+import RegisterForm from '@app/components/register-form';
+
+import {
+  RPContainer,
+  RPFormWrapper,
+  RPLoginTextWrapper,
+  RPTextContainer,
+  RPTextWrapper,
+  RPTitleWrapper,
+} from './styles';
 
 const RegisterPage = () => {
   const navigate = useNavigate();

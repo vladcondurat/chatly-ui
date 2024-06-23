@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
-import { ModalContent, ModalHeader, ModalOverlay, CloseButton } from './styles';
+
+import { CloseButton, ModalContent, ModalHeader, ModalOverlay } from './styles';
 
 interface ModalProps {
   title: string;

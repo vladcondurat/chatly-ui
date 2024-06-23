@@ -1,8 +1,10 @@
 import { Outlet } from 'react-router-dom';
-import Sidebar from '../../components/sidebar';
+
+import MobileNav from '@app/components/mobile-nav';
+import ProfileBar from '@app/components/profile-bar';
+import Sidebar from '@app/components/sidebar';
+
 import { PLContainer, PLOuteletContainer, PLProfileBarContainer } from './styles';
-import ProfileBar from '../../components/profile-bar';
-import MobileNav from '../../components/mobile-nav';
 
 const ProfileLayout = () => {
   return (

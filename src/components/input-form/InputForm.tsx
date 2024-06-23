@@ -1,15 +1,16 @@
-import { forwardRef, useState, ChangeEvent } from 'react';
+import { ChangeEvent, forwardRef, useState } from 'react';
+
 import {
   IFContainer,
+  IFErrorWrapper,
   IFField,
+  IFFileContainer,
+  IFFileField,
+  IFFileLabel,
+  IFImagePreview,
+  IFPlaceholderCircle,
   IFTextWrapper,
   IFTitleContainer,
-  IFErrorWrapper,
-  IFFileLabel,
-  IFFileField,
-  IFImagePreview,
-  IFFileContainer,
-  IFPlaceholderCircle,
 } from './styles';
 
 interface InputFormProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -21,10 +22,7 @@ interface InputFormProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 const InputForm = forwardRef<HTMLInputElement, InputFormProps>(
-  (
-    { formTitle, placeholder, isPassword, isFile, error, onChange, ...props },
-    ref
-  ) => {
+  ({ formTitle, placeholder, isPassword, isFile, error, onChange, ...props }, ref) => {
     const [imagePreview, setImagePreview] = useState<string | null>(null);
 
     const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -55,9 +53,7 @@ const InputForm = forwardRef<HTMLInputElement, InputFormProps>(
         {isFile ? (
           <IFFileContainer>
             <IFPlaceholderCircle>
-              {imagePreview && (
-                <IFImagePreview src={imagePreview} alt="Image preview" />
-              )}
+              {imagePreview && <IFImagePreview src={imagePreview} alt="Image preview" />}
             </IFPlaceholderCircle>
             <IFFileLabel>
               {placeholder}

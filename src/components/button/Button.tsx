@@ -8,20 +8,9 @@ interface ButtonProps {
   onClick?: () => void;
 }
 
-const Button = ({
-  labelName,
-  isFull,
-  disabled,
-  outline,
-  onClick,
-}: ButtonProps) => {
+const Button = ({ labelName, isFull, disabled, outline, onClick }: ButtonProps) => {
   return (
-    <StyledButton
-      $isFull={isFull}
-      disabled={disabled}
-      $outline={outline}
-      onClick={onClick}
-    >
+    <StyledButton $isFull={isFull} disabled={disabled} $outline={outline} onClick={onClick}>
       {labelName}
     </StyledButton>
   );

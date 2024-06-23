@@ -1,9 +1,10 @@
 import { AxiosResponse } from 'axios';
+
+import IPostRoomRequest from '../../types/requests/IPostRoomRequest';
+import IGetRoomsResponse from '../../types/responses/IGetRoomsResponse';
+import IRoomResponse from '../../types/responses/IRoomResponse';
+import IUserIds from '../../types/user/IUserIds';
 import { getApi } from '../Api';
-import IPostRoomRequest from '../../types/room/IPostRoomRequest';
-import IGetRoomsResponse from '../../types/room/IGetRoomsResponse';
-import IRoomResponse from '../../types/room/IRoomResponse';
-import IUserIds from '../../types/room/IUserIds';
 
 export const postRoomRequest = async (data: IPostRoomRequest): Promise<Partial<IRoomResponse>> => {
   const response: AxiosResponse<Partial<IRoomResponse>> = await getApi().post('/rooms', data);

@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import EditUserForm from '../../components/edit-user-form';
-import { EPContainer, EPGoBackSvg, EPTitleContainer, EPTitleWrapper } from './styles';
+
 import GoBackSvg from '@app/assets/GoBackSvg.svg';
-import { ROUTE__PROFILE } from '../../router/constants';
+import EditUserForm from '@app/components/edit-user-form';
+import { ROUTE__PROFILE } from '@app/router/constants';
+
+import { EPContainer, EPGoBackSvg, EPTitleContainer, EPTitleWrapper } from './styles';
 
 const EditProfile = () => {
   const navigate = useNavigate();

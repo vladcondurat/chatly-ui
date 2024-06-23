@@ -1,6 +1,6 @@
+import IUsers from '@app/types/responses/IUsersResponse';
+import IUser from '@app/types/user/IUser';
 import { isArray, toString } from 'lodash';
-import IUser from '../types/user/IUser';
-import IUsers from '../types/user/IUsersResponse';
 
 export const mapUserResponseToUser = (data: Partial<IUser>): IUser => {
   const user: IUser = {

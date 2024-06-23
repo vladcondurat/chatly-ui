@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import InputForm from '../input-form';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { z } from 'zod';
+
+import Button from '@app/components/button';
+import InputForm from '@app/components/input-form';
+import { useAppDispatch, useAppSelector } from '@app/hooks/store-hooks';
+import { fetchUserAsyncAction, updateUserAsyncAction } from '@app/store/actions/user-actions';
+import { dataUserSelector } from '@app/store/selectors/user-selectors';
+import { isFormDataEmpty } from '@app/utils/isFormDataEmpty';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { EFWrapper, EFInputWrapper } from './styles';
-import { useAppDispatch, useAppSelector } from '../../hooks/store-hooks';
-import { dataUserSelector } from '../../store/selectors/user-selectors';
-import { fetchUserAsyncAction, updateUserAsyncAction } from '../../store/actions/user-actions';
-import Button from '../button';
-import { isFormDataEmpty } from '../../utils/isFormDataEmpty';
+import { z } from 'zod';
+
+import { EFInputWrapper, EFWrapper } from './styles';
 
 const schema = z.object({
   avatarImg: z.instanceof(FileList).optional(),
@@ -18,9 +20,16 @@ const schema = z.object({
 
 type FormFields = z.infer<typeof schema>;
 
-const EditUserForm: React.FC = () => {
+const EditUserForm = () => {
   const dispatch = useAppDispatch();
+  const user = useAppSelector(dataUserSelector);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm<FormFields>({ resolver: zodResolver(schema) });
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -28,14 +37,6 @@ const EditUserForm: React.FC = () => {
     };
     fetchUser();
   }, [dispatch]);
-
-  const user = useAppSelector(dataUserSelector);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-    reset,
-  } = useForm<FormFields>({ resolver: zodResolver(schema) });
 
   useEffect(() => {
     if (user) {

@@ -67,7 +67,7 @@ export const PTBModifyButtonWrapper = styled.div`
   }
 `;
 
-export const PTBModifyButton = styled.img`
+export const PTBModifyButton = styled.div`
   width: 16px;
   height: 16px;
 `;

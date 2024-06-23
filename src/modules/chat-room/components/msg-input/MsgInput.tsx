@@ -1,23 +1,25 @@
-import {
-  MIContainer,
-  MIWrapper,
-  MITextArea,
-  MIEditMessageLabelWrapper,
-  MIEditMessageLabel,
-  MIImagePreviewContainer,
-  MIImagePreview,
-  MIClosePreview,
-  MIImage,
-} from './styles';
 import { useEffect, useRef, useState } from 'react';
-import { useAppDispatch } from '../../../../hooks/store-hooks';
+
+import { useAppDispatch } from '@app/hooks/store-hooks';
+import alertService from '@app/services/alert-service';
 import {
   postMessageAsyncAction,
   updateMessageAsyncAction,
-} from '../../../../store/actions/message-actions';
-import IMessage from '../../../../types/message/IMessage';
-import alertService from '../../../../services/alert-service';
+} from '@app/store/actions/message-actions';
+import IMessage from '@app/types/message/IMessage';
 import { Paperclip, SendHorizonal, X } from 'lucide-react';
+
+import {
+  MIClosePreview,
+  MIContainer,
+  MIEditMessageLabel,
+  MIEditMessageLabelWrapper,
+  MIImage,
+  MIImagePreview,
+  MIImagePreviewContainer,
+  MITextArea,
+  MIWrapper,
+} from './styles';
 
 interface IMsgInputProps {
   roomId: string;
@@ -26,27 +28,18 @@ interface IMsgInputProps {
 }
 
 const MsgInput = ({ roomId, messageToEdit, setMessageToEdit }: IMsgInputProps) => {
-  const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const dispatch = useAppDispatch();
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isImageFile, setIsImageFile] = useState<boolean>(true);
 
-  useEffect(() => {
-    if (textAreaRef.current && messageToEdit) {
-      textAreaRef.current.value = messageToEdit.content.textContent;
-      textAreaRef.current.focus();
-      adjustTextAreaHeight();
-    } else {
-      setSelectedFile(null);
-      setIsImageFile(true);
+  const adjustTextAreaHeight = () => {
+    const textArea = textAreaRef.current;
+    if (textArea) {
+      textArea.style.height = 'auto';
+      textArea.style.height = `${textArea.scrollHeight}px`;
     }
-  }, [messageToEdit, setMessageToEdit]);
-
-  useEffect(() => {
-    if (textAreaRef.current) {
-      textAreaRef.current.focus();
-    }
-  }, [roomId]);
+  };
 
   const submitMessage = async () => {
     if (textAreaRef.current) {
@@ -59,7 +52,7 @@ const MsgInput = ({ roomId, messageToEdit, setMessageToEdit }: IMsgInputProps) =
       messageContent.append('textContent', textValue);
 
       if (selectedFile) {
-        messageContent.append('attachedImageUrl', selectedFile);
+        messageContent.append('attachedImage', selectedFile);
       }
 
       if (messageToEdit) {
@@ -82,23 +75,11 @@ const MsgInput = ({ roomId, messageToEdit, setMessageToEdit }: IMsgInputProps) =
     }
   };
 
-  const adjustTextAreaHeight = () => {
-    const textArea = textAreaRef.current;
-    if (textArea) {
-      textArea.style.height = 'auto';
-      textArea.style.height = `${textArea.scrollHeight}px`;
-    }
-  };
-
   const handleCloseEditMessage = () => {
     setMessageToEdit(null);
     if (textAreaRef.current) {
       textAreaRef.current.value = '';
     }
-    adjustTextAreaHeight();
-  };
-
-  const handleInput = () => {
     adjustTextAreaHeight();
   };
 
@@ -120,6 +101,27 @@ const MsgInput = ({ roomId, messageToEdit, setMessageToEdit }: IMsgInputProps) =
     setSelectedFile(null);
     setIsImageFile(true);
   };
+
+  const handleInput = () => {
+    adjustTextAreaHeight();
+  };
+
+  useEffect(() => {
+    if (textAreaRef.current && messageToEdit) {
+      textAreaRef.current.value = messageToEdit.content.textContent;
+      textAreaRef.current.focus();
+      adjustTextAreaHeight();
+    } else {
+      setSelectedFile(null);
+      setIsImageFile(true);
+    }
+  }, [messageToEdit, setMessageToEdit]);
+
+  useEffect(() => {
+    if (textAreaRef.current) {
+      textAreaRef.current.focus();
+    }
+  }, [roomId]);
 
   return (
     <MIEditMessageLabelWrapper>

@@ -1,3 +1,21 @@
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+
+import GoBackSvg from '@app/assets/GoBackSvg.svg';
+import Button from '@app/components/button';
+import UserList from '@app/components/user-list';
+import { useAppDispatch, useAppSelector } from '@app/hooks/store-hooks';
+import { ROUTE__ROOMS } from '@app/router/constants';
+import {
+  fetchRoomsAsyncAction,
+  fetchSelectedRoomAsyncAction,
+  leaveRoomAsyncAction,
+  removeUserFromRoomAsyncAction,
+} from '@app/store/actions/room-actions';
+import { fetchUsersInsideRoomAsyncAction } from '@app/store/actions/user-actions';
+import { selectedRoomSelector } from '@app/store/selectors/room-selectors';
+
+import EditChatForm from './components/edit-chat-form';
 import {
   ERButtonsWrapper,
   ERContainer,
@@ -6,22 +24,6 @@ import {
   ERUserListWrapper,
   ERWrapper,
 } from './styles';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../hooks/store-hooks';
-import EditChatForm from './components/edit-chat-form';
-import UserList from '../../components/user-list';
-import GoBackSvg from '../../assets/GoBackSvg.svg';
-import Button from '../../components/button';
-import { ROUTE__ROOMS } from '../../router/constants';
-import { useEffect, useState } from 'react';
-import {
-  fetchRoomsAsyncAction,
-  fetchSelectedRoomAsyncAction,
-  leaveRoomAsyncAction,
-  removeUserFromRoomAsyncAction,
-} from '../../store/actions/room-actions';
-import { fetchUsersInsideRoomAsyncAction } from '../../store/actions/user-actions';
-import { selectedRoomSelector } from '../../store/selectors/room-selectors';
 
 const EditChatRoom = () => {
   const navigate = useNavigate();
@@ -30,13 +32,6 @@ const EditChatRoom = () => {
   const room = useAppSelector(selectedRoomSelector);
   const [selectedUserIds, setSelectedUserIds] = useState<string[]>([]);
   const [isAnySelected, setIsAnySelected] = useState(false);
-
-  useEffect(() => {
-    const fetchSelectedRoom = async () => {
-      await dispatch(fetchSelectedRoomAsyncAction({ roomId: roomId }));
-    };
-    fetchSelectedRoom();
-  }, [dispatch, roomId]);
 
   const handleSelectionChange = (userIds: string[]) => {
     setSelectedUserIds(userIds);
@@ -63,6 +58,13 @@ const EditChatRoom = () => {
     await dispatch(fetchRoomsAsyncAction());
     navigate(ROUTE__ROOMS);
   };
+
+  useEffect(() => {
+    const fetchSelectedRoom = async () => {
+      await dispatch(fetchSelectedRoomAsyncAction({ roomId: roomId }));
+    };
+    fetchSelectedRoom();
+  }, [dispatch, roomId]);
 
   return (
     <ERContainer>

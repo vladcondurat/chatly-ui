@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react';
-import { SBInput, SBWrapper, SBSvgWrapper } from './styles';
-import SearchSvg from './assets/search.svg';
+import { useEffect, useState } from 'react';
+
+import { Search } from 'lucide-react';
+
+import { SBInput, SBWrapper } from './styles';
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
@@ -28,7 +30,7 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
   return (
     <SBWrapper>
       <SBInput placeholder="Search" onChange={handleInputChange} />
-      <SBSvgWrapper src={SearchSvg} alt="search-icon" />
+      <Search size={12} color="#979aa0" strokeWidth={1.5} />
     </SBWrapper>
   );
 };

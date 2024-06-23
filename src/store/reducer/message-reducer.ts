@@ -1,6 +1,10 @@
+import {
+  setDataMessageAction,
+  setIsErrorMessageAction,
+  setLoadingMessageAction,
+} from '@app/store/actions/message-actions';
+import IMessageState from '@app/types/message/IMessageState';
 import { createReducer } from '@reduxjs/toolkit';
-import IMessageState from '../../types/message/IMessageState';
-import { setDataMessageAction, setIsErrorMessageAction, setLoadingMessageAction } from '../actions/message-actions';
 
 const initialState: IMessageState = {
   data: null,

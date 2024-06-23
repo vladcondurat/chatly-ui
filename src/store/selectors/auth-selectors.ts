@@ -1,4 +1,4 @@
-import { RootState } from '../index';
+import { RootState } from '@app/store';
 
 export const authBearerTokenSelector = (state: RootState): string => state.auth.token;
 export const isLoginErrorAuthSelector = (state: RootState): boolean => state.auth.isLoginError;

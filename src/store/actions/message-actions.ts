@@ -1,4 +1,11 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import {
+  deleteMessageRequest,
+  postMessageRequest,
+  updateMessageRequest,
+} from '@app/api/requests/message-requests';
+import { mapMessageResponseToMessage } from '@app/mappers/message-mappers';
+import alertService from '@app/services/alert-service';
+import { RootState } from '@app/store';
 import {
   MESSAGE__DELETE,
   MESSAGE__POST,
@@ -6,37 +13,22 @@ import {
   MESSAGE__SET_IS_ERROR,
   MESSAGE__SET_LOADING,
   MESSAGE__UPDATE,
-} from '../constants';
-import { RootState } from '..';
+} from '@app/store/constants';
+import ApiException from '@app/types/api/ApiException';
+import IMessage from '@app/types/message/IMessage';
+import IPostMessageRequest from '@app/types/requests/IPostMessageRequest';
+import IUpdateMessageRequest from '@app/types/requests/IUpdateMessageRequest';
+import IMessageResponse from '@app/types/responses/IMessageResponse';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { createAction } from '@reduxjs/toolkit';
-import { mapMessageResponseToMessage } from '../../mappers/message-mappers';
-import {
-  deleteMessageRequest,
-  postMessageRequest,
-  updateMessageRequest,
-} from '../../api/requests/message-requests';
-import IMessage from '../../types/message/IMessage';
-import ApiException from '../../types/api/ApiException';
-import alertService from '../../services/alert-service';
-import IMessageResponse from '../../types/message/IMessageResponse';
 
 export const setDataMessageAction = createAction<IMessage>(MESSAGE__SET_DATA);
 export const setLoadingMessageAction = createAction<boolean>(MESSAGE__SET_LOADING);
 export const setIsErrorMessageAction = createAction<boolean>(MESSAGE__SET_IS_ERROR);
 
-interface IPostMessageParams {
-  messageContent: FormData;
-  roomId: string;
-}
-
-interface IUpdateMessageParams {
-  messageContent: FormData;
-  messageId: string;
-}
-
 export const postMessageAsyncAction = createAsyncThunk<
   void,
-  IPostMessageParams,
+  IPostMessageRequest,
   { state: RootState }
 >(MESSAGE__POST, async ({ messageContent, roomId }, thunkApi) => {
   thunkApi.dispatch(setLoadingMessageAction(true));
@@ -59,7 +51,7 @@ export const postMessageAsyncAction = createAsyncThunk<
 
 export const updateMessageAsyncAction = createAsyncThunk<
   void,
-  IUpdateMessageParams,
+  IUpdateMessageRequest,
   { state: RootState }
 >(MESSAGE__UPDATE, async ({ messageContent, messageId }, thunkApi) => {
   thunkApi.dispatch(setLoadingMessageAction(true));

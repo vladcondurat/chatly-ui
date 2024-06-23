@@ -1,23 +1,24 @@
+import { useNavigate } from 'react-router-dom';
+
+import { useAppSelector } from '@app/hooks/store-hooks';
+import { ROUTE__ROOMS } from '@app/router/constants';
+import { selectedRoomSelector } from '@app/store/selectors/room-selectors';
+import IRoomCard from '@app/types/room/IRoomCard';
+import formatTime from '@app/utils/formatTime';
+
 import {
-  CCContainer,
   CCChatName,
+  CCContainer,
   CCImage,
   CCLastMsgContainer,
   CCLastMsgTimeContainer,
   CCLastMsgTimeWrapper,
   CCTextWrapper,
 } from './styles';
-import { useNavigate } from 'react-router-dom';
-import IRoomCard from '../../types/room/IRoomCard';
-import formatTime from '../../utils/formatTime';
-import { useAppSelector } from '../../hooks/store-hooks';
-import { selectedRoomSelector } from '../../store/selectors/room-selectors';
-import { ROUTE__ROOMS } from '../../router/constants';
 
-const ChatCell = ({ props }: { props: IRoomCard }) => {
+const ChatCell = ({ id, details, lastMessage }: IRoomCard) => {
   const navigate = useNavigate();
   const selectedRoom = useAppSelector(selectedRoomSelector);
-  const { id, details, lastMessage } = props;
   const isRoomSelected = selectedRoom ? id === selectedRoom.id : false;
 
   const handleLastMessage = () => {

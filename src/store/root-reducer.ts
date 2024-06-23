@@ -1,9 +1,10 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import authReducer from './reducer/auth-reducer';
-import userReducer from './reducer/user-reducer';
-import roomReducer from './reducer/room-reducer';
-import messageReducer from './reducer/message-reducer';
+
 import appReducer from './reducer/app-reducer';
+import authReducer from './reducer/auth-reducer';
+import messageReducer from './reducer/message-reducer';
+import roomReducer from './reducer/room-reducer';
+import userReducer from './reducer/user-reducer';
 
 const rootReducer = combineReducers({
   app: appReducer,

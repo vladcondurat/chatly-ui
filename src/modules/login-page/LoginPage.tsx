@@ -1,6 +1,15 @@
 import { useNavigate } from 'react-router-dom';
-import { LPFormWrapper, LPContainer, LPRegisterTextWrapper, LPTextContainer, LPTitleWrapper, LPTextWrapper } from './styles';
-import LoginForm from '../../components/login-form';
+
+import LoginForm from '@app/components/login-form';
+
+import {
+  LPContainer,
+  LPFormWrapper,
+  LPRegisterTextWrapper,
+  LPTextContainer,
+  LPTextWrapper,
+  LPTitleWrapper,
+} from './styles';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -12,7 +21,9 @@ const LoginPage = () => {
         <LoginForm />
         <LPTextContainer>
           <LPTextWrapper>Don't have an account?</LPTextWrapper>
-          <LPRegisterTextWrapper onClick={() => navigate('/register')}>Register now</LPRegisterTextWrapper>
+          <LPRegisterTextWrapper onClick={() => navigate('/register')}>
+            Register now
+          </LPRegisterTextWrapper>
         </LPTextContainer>
       </LPFormWrapper>
     </LPContainer>

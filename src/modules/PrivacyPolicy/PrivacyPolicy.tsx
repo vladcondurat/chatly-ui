@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import { PPContainer, PPGoBackSvg, PPTitleContainer, PPTitleWrapper, PPContent } from './styles';
+
 import GoBackSvg from '@app/assets/GoBackSvg.svg';
-import { ROUTE__PROFILE } from '../../router/constants';
+import { ROUTE__PROFILE } from '@app/router/constants';
+
+import { PPContainer, PPContent, PPGoBackSvg, PPTitleContainer, PPTitleWrapper } from './styles';
 
 const PrivacyPolicy = () => {
   const navigate = useNavigate();

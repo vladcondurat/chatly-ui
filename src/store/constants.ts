@@ -1,39 +1,39 @@
 export const APP__SET_MODAL_OPEN = '[APP] SET_MODAL_OPEN';
 
+export const AUTH__LOGIN = '[AUTH] LOGIN';
+export const AUTH__LOGOUT = '[AUTH] LOGOUT';
+export const AUTH__REGISTER = '[AUTH] REGISTER';
 export const AUTH__SET_STATE = '[AUTH] SET_STATE';
 export const AUTH__SET_TOKEN = '[AUTH] SET_TOKEN';
 export const AUTH__SET_LOADING = '[AUTH] SET_LOADING';
 export const AUTH__SET_IS_LOGIN_ERROR = '[AUTH] SET_IS_LOGIN_ERROR';
 export const AUTH__SET_LOGIN_ERROR = '[AUTH] SET_LOGIN_ERROR';
-export const AUTH__LOGIN = '[AUTH] LOGIN';
-export const AUTH__LOGOUT = '[AUTH] LOGOUT';
-export const AUTH__RESET_DATA = '[AUTH] RESET_DATA';
-export const AUTH__REGISTER = '[AUTH] REGISTER';
 export const AUTH__SET_REGISTER_ERROR = '[AUTH] SET_REGISTER_ERROR';
 export const AUTH__SET_IS_REGISTERED = '[AUTH] SET_IS_REGISTERED';
+export const AUTH__RESET_DATA = '[AUTH] RESET_DATA';
 
 export const USER__UPDATE = '[USER] UPDATE';
-export const USER__FETCH = '[USER] FETCH';
-export const USER__FETCH_ALL = '[USER] FETCH_ALL';
-export const USER__FETCH_INSIDE_ROOM = '[USER] FETCH_INSIDE_ROOM';
-export const USER__FETCH_OUTSIDE_ROOM = '[USER] FETCH_OUTSIDE_ROOM';
 export const USER__SET_DATA_ALL = '[USER] SET_DATA_ALL';
 export const USER__SET_DATA_OUTSIDE_ROOM = '[USER] SET_DATA_OUTSIDE_ROOM';
 export const USER__SET_DATA_INSIDE_ROOM = '[USER] SET_DATA_INSIDE_ROOM';
 export const USER__SET_DATA = '[USER] SET_DATA';
 export const USER__SET_LOADING = '[USER] SET_LOADING';
+export const USER__FETCH = '[USER] FETCH';
+export const USER__FETCH_ALL = '[USER] FETCH_ALL';
+export const USER__FETCH_INSIDE_ROOM = '[USER] FETCH_INSIDE_ROOM';
+export const USER__FETCH_OUTSIDE_ROOM = '[USER] FETCH_OUTSIDE_ROOM';
 
-export const ROOM__FETCH_ROOMS = '[ROOM] FETCH';
-export const ROOM__FETCH_SELECTED_ROOM = '[ROOM] FETCH';
-export const ROOM__SET_ROOMS = '[ROOM] SET_ROOMS';
-export const ROOM__SET_SELECTED_ROOM = '[ROOM] SET_SELECTED_ROOM';
-export const ROOM__SET_LOADING = '[ROOM] SET_LOADING';
-export const ROOM__SET_IS_ERROR = '[ROOM] SET_IS_ERROR';
 export const ROOM__POST_ROOM = '[ROOM] POST';
 export const ROOM__UPDATE = '[ROOM] UPDATE';
 export const ROOM__ADD_USERS = '[ROOM] ADD_USERS';
 export const ROOM__REMOVE_USERS = '[ROOM] REMOVE_USERS';
 export const ROOM__LEAVE = '[ROOM] LEAVE';
+export const ROOM__FETCH_ROOMS = '[ROOM] FETCH';
+export const ROOM__FETCH_SELECTED_ROOM = '[ROOM] FETCH_SELECTED_ROOM';
+export const ROOM__SET_ROOMS = '[ROOM] SET_ROOMS';
+export const ROOM__SET_SELECTED_ROOM = '[ROOM] SET_SELECTED_ROOM';
+export const ROOM__SET_LOADING = '[ROOM] SET_LOADING';
+export const ROOM__SET_IS_ERROR = '[ROOM] SET_IS_ERROR';
 
 export const MESSAGE__POST = '[MESSAGE] POST';
 export const MESSAGE__UPDATE = '[MESSAGE] UPDATE';

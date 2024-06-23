@@ -10,7 +10,7 @@ export const SMContainer = styled.div`
   display: flex;
   max-width: 480px;
   width: 100%;
-  padding: 8px 12px;
+  padding: 8px 8px 8px 12px;
   border-radius: 16px 16px 4px 16px;
   background-color: #1566a3;
   gap: 8px;
@@ -20,10 +20,14 @@ export const SMContainerWithImg = styled.div`
   display: flex;
   max-width: 300px;
   width: 100%;
-  padding: 8px 12px;
+  padding: 8px 8px 8px 12px;
   border-radius: 0px 0px 4px 16px;
   background-color: #1566a3;
   gap: 8px;
+
+  @media (max-width: 500px) {
+    width: 100%;
+  }
 `;
 
 export const SMContentWrapper = styled.div`
@@ -53,9 +57,15 @@ export const SMTextContainer = styled.div`
 
 export const SMImgContainer = styled.img`
   width: 300px;
-  height: 300px;
+  max-height: 300px;
+  height: 100%;
   object-fit: cover;
   border-radius: 16px 16px 0px 0px;
+
+  @media (max-width: 500px) {
+    width: 100%;
+    aspect-ratio: 1/1;
+  }
 `;
 
 export const SMFileDownloadLink = styled.a`

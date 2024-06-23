@@ -1,10 +1,5 @@
 import styled from 'styled-components';
 
-export const SBSvgWrapper = styled.img`
-  height: 12px;
-  width: 12px;
-`;
-
 export const SBWrapper = styled.div`
   display: flex;
   justify-content: space-between;

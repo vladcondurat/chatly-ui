@@ -1,7 +1,9 @@
 import { Outlet } from 'react-router-dom';
-import { CLContainer, CLChatRoomContainer, CLChatsBarContainer } from './styles';
-import Sidebar from '../../components/sidebar';
-import ChatsBar from '../../components/chats-bar';
+
+import ChatsBar from '@app/components/chats-bar';
+import Sidebar from '@app/components/sidebar';
+
+import { CLChatRoomContainer, CLChatsBarContainer, CLContainer } from './styles';
 
 const ChatLayout = () => {
   return (

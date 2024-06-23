@@ -1,10 +1,11 @@
 import axios, { Axios } from 'axios';
 import isEmpty from 'lodash/isEmpty';
-import store from '../store';
+
 import Config from '../config';
+import { AUTH_TOKEN, getToken } from '../services/storage-service';
+import store from '../store';
 import { authBearerTokenSelector } from '../store/selectors/auth-selectors';
 import handleApiError from '../utils/handleApiError';
-import { AUTH_TOKEN, getToken } from '../services/storage-service';
 
 let instance: Axios = null;
 
@@ -35,7 +36,7 @@ export const initApi = () => {
         error.response.data = { detail: 'Something went wrong' };
       }
       throw handleApiError(error);
-    },
+    }
   );
 };
 

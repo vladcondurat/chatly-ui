@@ -1,4 +1,5 @@
-import IUser from '../../types/user/IUser';
+import IUser from '@app/types/user/IUser';
+
 import { UCAvatarImg, UCCheckbox, UCContainer, UCDetailsWrapper, UCUsername } from './styles';
 
 interface UserCardProps {

@@ -1,15 +1,15 @@
-import { createReducer } from '@reduxjs/toolkit';
-import IAuthState from '../../types/auth/IAuthState';
 import {
-  setStateAuthAction,
-  setTokenAuthAction,
-  setLoadingAuthAction,
-  setLoginErrorAuthAction,
   resetDataAuthAction,
   setIsLoginErrorAuthAction,
-  setRegisterErrorAuthAction,
   setIsRegisteredAuthAction,
-} from '../actions/auth-sync-actions';
+  setLoadingAuthAction,
+  setLoginErrorAuthAction,
+  setRegisterErrorAuthAction,
+  setStateAuthAction,
+  setTokenAuthAction,
+} from '@app/store/actions/auth-sync-actions';
+import IAuthState from '@app/types/auth/IAuthState';
+import { createReducer } from '@reduxjs/toolkit';
 
 const initialState: IAuthState = {
   token: null,
@@ -27,10 +27,19 @@ const authReducer = createReducer(initialState, builder =>
     .addCase(setTokenAuthAction, (state, action) => ({ ...state, token: action.payload }))
     .addCase(setLoadingAuthAction, (state, action) => ({ ...state, loading: action.payload }))
     .addCase(setLoginErrorAuthAction, (state, action) => ({ ...state, loginError: action.payload }))
-    .addCase(setIsLoginErrorAuthAction, (state, action) => ({ ...state, isLoginError: action.payload }))
-    .addCase(setIsRegisteredAuthAction, (state, action) => ({ ...state, isRegistered: action.payload }))
-    .addCase(setRegisterErrorAuthAction, (state, action) => ({ ...state, registerError: action.payload }))
-    .addCase(resetDataAuthAction, () => initialState),
+    .addCase(setIsLoginErrorAuthAction, (state, action) => ({
+      ...state,
+      isLoginError: action.payload,
+    }))
+    .addCase(setIsRegisteredAuthAction, (state, action) => ({
+      ...state,
+      isRegistered: action.payload,
+    }))
+    .addCase(setRegisterErrorAuthAction, (state, action) => ({
+      ...state,
+      registerError: action.payload,
+    }))
+    .addCase(resetDataAuthAction, () => initialState)
 );
 
 export default authReducer;

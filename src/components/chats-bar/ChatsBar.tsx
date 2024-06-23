@@ -1,20 +1,14 @@
-import ChatCell from '../chat-cell';
-import SearchBar from '../search-bar';
-import {
-  CBContainer,
-  CBCellWrapper,
-  CBSearchBarWrapper,
-  CBNoChatsContainer,
-} from './styles';
-import { fetchRoomsAsyncAction } from '../../store/actions/room-actions';
-import { useEffect, useState } from 'react';
-import {
-  isLoadingRoomSelector,
-  roomsSelector,
-} from '../../store/selectors/room-selectors';
-import { useAppDispatch, useAppSelector } from '../../hooks/store-hooks';
-import MobileNav from '../mobile-nav';
-import LoadingSpinner from '../loading-spinner';
+import { useEffect, useMemo, useState } from 'react';
+
+import ChatCell from '@app/components/chat-cell';
+import LoadingSpinner from '@app/components/loading-spinner';
+import MobileNav from '@app/components/mobile-nav';
+import SearchBar from '@app/components/search-bar';
+import { useAppDispatch, useAppSelector } from '@app/hooks/store-hooks';
+import { fetchRoomsAsyncAction } from '@app/store/actions/room-actions';
+import { isLoadingRoomSelector, roomsSelector } from '@app/store/selectors/room-selectors';
+
+import { CBCellWrapper, CBContainer, CBNoChatsContainer, CBSearchBarWrapper } from './styles';
 
 const ChatsBar = () => {
   const dispatch = useAppDispatch();
@@ -26,18 +20,28 @@ const ChatsBar = () => {
     dispatch(fetchRoomsAsyncAction());
   }, [dispatch]);
 
-  const filteredChatCells = chatCells.filter(chatCell =>
-    chatCell.details.roomName.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  const handleChatCells = () =>
-    filteredChatCells && filteredChatCells.length > 0 ? (
-      filteredChatCells.map(chatCell => (
-        <ChatCell key={chatCell.id} props={chatCell} />
-      ))
-    ) : (
-      <CBNoChatsContainer>No chat rooms available</CBNoChatsContainer>
+  const filteredChatCells = useMemo(() => {
+    return chatCells.filter(chatCell =>
+      chatCell.details.roomName.toLowerCase().includes(searchQuery.toLowerCase())
     );
+  }, [chatCells, searchQuery]);
+
+  const renderChatCells = () => {
+    if (isLoading) {
+      return <LoadingSpinner />;
+    }
+    if (filteredChatCells.length > 0) {
+      return filteredChatCells.map(chatCell => (
+        <ChatCell
+          key={chatCell.id}
+          id={chatCell.id}
+          details={chatCell.details}
+          lastMessage={chatCell.lastMessage}
+        />
+      ));
+    }
+    return <CBNoChatsContainer>No chat rooms available</CBNoChatsContainer>;
+  };
 
   return (
     <>
@@ -45,9 +49,7 @@ const ChatsBar = () => {
         <CBSearchBarWrapper>
           <SearchBar onSearch={setSearchQuery} />
         </CBSearchBarWrapper>
-        <CBCellWrapper>
-          {isLoading ? <LoadingSpinner /> : handleChatCells()}
-        </CBCellWrapper>
+        <CBCellWrapper>{renderChatCells()}</CBCellWrapper>
       </CBContainer>
       <MobileNav />
     </>

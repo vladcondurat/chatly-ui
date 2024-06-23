@@ -1,14 +1,16 @@
-import { SBContainer, SBSvg, SBNavOptionContainer, SBTextWrapper } from './styles';
-import ChatSvg from '../../assets/ChatSvg.svg';
-import NewChatSvg from '../../assets/NewChatSvg.svg';
-import ProfileSvg from '../../assets/ProfileSvg.svg';
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../hooks/store-hooks';
-import { selectedRoomSelector } from '../../store/selectors/room-selectors';
-import { ROUTE__PROFILE, ROUTE__ROOMS } from '../../router/constants';
 import { useState } from 'react';
-import NewChatModal from '../new-chat-modal';
-import { setAppIsModalOpenAction } from '../../store/actions/app-sync-actions';
+import { useNavigate } from 'react-router-dom';
+
+import ChatSvg from '@app/assets/ChatSvg.svg';
+import NewChatSvg from '@app/assets/NewChatSvg.svg';
+import ProfileSvg from '@app/assets/ProfileSvg.svg';
+import NewChatModal from '@app/components/new-chat-modal';
+import { useAppDispatch, useAppSelector } from '@app/hooks/store-hooks';
+import { ROUTE__PROFILE, ROUTE__ROOMS } from '@app/router/constants';
+import { setAppIsModalOpenAction } from '@app/store/actions/app-sync-actions';
+import { selectedRoomSelector } from '@app/store/selectors/room-selectors';
+
+import { SBContainer, SBNavOptionContainer, SBSvg, SBTextWrapper } from './styles';
 
 interface NavOption {
   src: string;
@@ -19,19 +21,18 @@ interface NavOption {
 const Sidebar = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const selectedRoom = useAppSelector(selectedRoomSelector);
   const selectedRoomId = selectedRoom ? selectedRoom.id : '';
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleModalOpen = async () => {
+  const handleModalOpen = () => {
     setIsModalOpen(true);
-    await dispatch(setAppIsModalOpenAction(true));
+    dispatch(setAppIsModalOpenAction(true));
   };
 
-  const handleModalClose = async () => {
+  const handleModalClose = () => {
     setIsModalOpen(false);
-    await dispatch(setAppIsModalOpenAction(false));
+    dispatch(setAppIsModalOpenAction(false));
   };
 
   const navOptions: NavOption[] = [

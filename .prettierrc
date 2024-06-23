@@ -8,6 +8,18 @@
   "useTabs": false,
   "arrowParens": "avoid",
   "endOfLine": "auto",
+  "importOrder": [
+    "^react(.*)$",
+    "<THIRD_PARTY_MODULES>",
+    "^@/components/(.*)$",
+    "^@/hooks/(.*)$",
+    "^@/utils/(.*)$",
+    "^@/styles/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
   "overrides": [
     {
       "files": "*.test.{js,jsx,ts,tsx}",

@@ -1,35 +1,36 @@
 import { useNavigate } from 'react-router-dom';
-import { ROUTE__EDIT_PROFILE } from '../../../../router/constants';
+
+import { useAppSelector } from '@app/hooks/store-hooks';
+import { ROUTE__EDIT_PROFILE } from '@app/router/constants';
+import { dataUserSelector } from '@app/store/selectors/user-selectors';
+import { Pen } from 'lucide-react';
+
 import {
-  PTBImage,
   PTBContainer,
-  PTBUsername,
   PTBEmail,
-  PTBModifyButton,
-  PTBTextWrapper,
+  PTBImage,
   PTBModifyButtonWrapper,
+  PTBTextWrapper,
+  PTBUsername,
 } from './styles';
-import PenSvg from './assets/PenSvg.svg';
-import genericAvatarImage from '../../../../assets/generic-avatar.png';
-import { useAppSelector } from '../../../../hooks/store-hooks';
-import { dataUserSelector } from '../../../../store/selectors/user-selectors';
 
 const ProfileTopBar = () => {
   const navigate = useNavigate();
   const user = useAppSelector(dataUserSelector);
-  const avatarUrl = user?.avatarUrl || genericAvatarImage;
 
   return (
     <PTBContainer>
-      <PTBImage src={avatarUrl} />
       {user && (
-        <PTBTextWrapper>
-          <PTBUsername>{user.username}</PTBUsername>
-          <PTBEmail>{user.email}</PTBEmail>
-        </PTBTextWrapper>
+        <>
+          <PTBImage src={user?.avatarUrl} />
+          <PTBTextWrapper>
+            <PTBUsername>{user.username}</PTBUsername>
+            <PTBEmail>{user.email}</PTBEmail>
+          </PTBTextWrapper>
+        </>
       )}
-      <PTBModifyButtonWrapper>
-        <PTBModifyButton src={PenSvg} onClick={() => navigate(`${ROUTE__EDIT_PROFILE}`)} />
+      <PTBModifyButtonWrapper onClick={() => navigate(`${ROUTE__EDIT_PROFILE}`)}>
+        <Pen size={16} color="#ffffff" strokeWidth={1.5} />
       </PTBModifyButtonWrapper>
     </PTBContainer>
   );

@@ -1,5 +1,5 @@
-import roomsAdapter from '../adaptors/rooms-adapter';
-import { RootState } from '../index';
+import { RootState } from '@app/store';
+import roomsAdapter from '@app/store/adaptors/rooms-adapter';
 
 const roomsSelectors = roomsAdapter.getSelectors<RootState>(state => state.room);
 

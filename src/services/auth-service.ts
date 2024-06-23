@@ -1,5 +1,6 @@
-import { setTokenAuthAction, setStateAuthAction } from '../store/actions/auth-sync-actions';
-import store from '../store';
+import store from '@app/store';
+import { setStateAuthAction, setTokenAuthAction } from '@app/store/actions/auth-sync-actions';
+
 import { getToken } from './storage-service';
 
 export const TOKEN_AUTH = 'access-token';
