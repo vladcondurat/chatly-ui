@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import ChatsBar from '@app/components/chats-bar';
 import ProfileBar from '@app/components/profile-bar';
+import useIsMobile from '@app/hooks/useIsMobile';
 import useModalOpen from '@app/hooks/useModalOpen';
 import useScreenWidth from '@app/hooks/useScreenWidth';
 import ChatLayout from '@app/layout/chat-layout';
@@ -29,14 +30,13 @@ import {
 } from './constants';
 
 const AppRoutes = (): JSX.Element => {
-  const width = useScreenWidth();
-  const threshold = 500;
+  const isMobile = useIsMobile();
 
   return (
     <Routes>
       <Route element={<ProtectedRoutes />}>
         <Route element={<ChatLayout />}>
-          {width > threshold ? (
+          {isMobile ? (
             <Route path={ROUTE__ROOMS} element={<EmptyChatRoom />} />
           ) : (
             <Route path={ROUTE__ROOMS} element={<ChatsBar />} />
@@ -46,7 +46,7 @@ const AppRoutes = (): JSX.Element => {
         </Route>
 
         <Route element={<ProfileLayout />}>
-          {width > threshold ? (
+          {isMobile ? (
             <Route path={ROUTE__PROFILE} element={<EmptyProfile />} />
           ) : (
             <Route path={ROUTE__PROFILE} element={<ProfileBar />} />
