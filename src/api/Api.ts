@@ -1,11 +1,9 @@
+import Config from '@app/config';
+import store from '@app/store';
+import { authBearerTokenSelector } from '@app/store/selectors/auth-selectors';
+import handleApiError from '@app/utils/handleApiError';
 import axios, { Axios } from 'axios';
 import isEmpty from 'lodash/isEmpty';
-
-import Config from '../config';
-import { AUTH_TOKEN, getToken } from '../services/storage-service';
-import store from '../store';
-import { authBearerTokenSelector } from '../store/selectors/auth-selectors';
-import handleApiError from '../utils/handleApiError';
 
 let instance: Axios = null;
 
@@ -16,10 +14,6 @@ export const initApi = () => {
 
   instance.interceptors.request.use(config => {
     const newConfig = { ...config };
-    const token2 = getToken(AUTH_TOKEN);
-    if (token2) {
-      newConfig.headers.Authorization = `Bearer ${token2}`;
-    }
     if (authBearerTokenSelector(store.getState())) {
       const token = authBearerTokenSelector(store.getState());
       newConfig.headers.Authorization = `Bearer ${token}`;

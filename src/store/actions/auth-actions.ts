@@ -1,7 +1,7 @@
 import { loginRequest, registerRequest } from '@app/api/requests/auth-requests';
 import alertService from '@app/services/alert-service';
 import { LOGIN_FAILED__TITLE } from '@app/services/alert-service/alert-errors';
-import { AUTH_TOKEN } from '@app/services/storage-service';
+import { AUTH_TOKEN } from '@app/services/auth-service';
 import { removeToken, setToken } from '@app/services/storage-service';
 import { RootState } from '@app/store';
 import { AUTH__LOGIN, AUTH__LOGOUT, AUTH__REGISTER } from '@app/store/constants';
