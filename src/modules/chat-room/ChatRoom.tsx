@@ -2,10 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '@app/hooks/store-hooks';
-import {
-  fetchRoomsRealTimeAsyncAction,
-  fetchSelectedRoomAsyncAction,
-} from '@app/store/actions/room-actions';
+import { fetchSelectedRoomAsyncAction } from '@app/store/actions/room-actions';
 import { fetchUserAsyncAction } from '@app/store/actions/user-actions';
 import {
   dataMessageSelector,
@@ -15,7 +12,6 @@ import {
 import { selectedRoomSelector } from '@app/store/selectors/room-selectors';
 import { dataUserSelector } from '@app/store/selectors/user-selectors';
 import IMessage from '@app/types/message/IMessage';
-import * as signalR from '@microsoft/signalr';
 
 import TopBar from './components/chat-top-bar';
 import MsgInput from './components/msg-input';
@@ -39,28 +35,6 @@ const ChatRoom = () => {
       lastMessageRef.current.scrollIntoView({ behavior: 'auto' });
     }
   };
-
-  useEffect(() => {
-    const connection = new signalR.HubConnectionBuilder()
-      .withUrl('http://localhost:5003/messageHub')
-      .withAutomaticReconnect()
-      .build();
-
-    connection.on('ReceiveMessage', message => {
-      console.log('Message received:', message);
-      dispatch(fetchSelectedRoomAsyncAction({ roomId }));
-      dispatch(fetchRoomsRealTimeAsyncAction());
-    });
-
-    connection
-      .start()
-      .then(() => console.log('Connection started'))
-      .catch(err => console.error('Connection error: ', err));
-
-    return () => {
-      connection.stop();
-    };
-  }, [dispatch, roomId]);
 
   useEffect(() => {
     dispatch(fetchSelectedRoomAsyncAction({ roomId }));

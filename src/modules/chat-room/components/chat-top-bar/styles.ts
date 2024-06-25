@@ -4,8 +4,8 @@ export const TBContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
   min-height: 64px;
+  gap: 12px;
   padding: 0 12px 0 12px;
   border-bottom: 1px solid #2e333a;
   z-index: 2;
@@ -13,8 +13,10 @@ export const TBContainer = styled.div`
 
 export const TBLeftContainer = styled.div`
   display: flex;
+  width: 100%;
   align-items: center;
   gap: 12px;
+  overflow: hidden;
 `;
 
 export const TBChatNameWrapper = styled.div`
@@ -34,8 +36,10 @@ export const TBOtherDetailsWrapper = styled.div`
 export const TBTextContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
-
+  overflow: hidden;
+  width: 0;
+  flex-grow: 1;
+  text-overflow: ellipsis;
   @media (max-width: 320px) {
     display: none;
   }
@@ -51,7 +55,7 @@ export const TBBackSvg = styled.img`
 `;
 
 export const TBChatImage = styled.img`
-  width: 48px;
+  min-width: 48px;
   height: 48px;
   border-radius: 50%;
   object-fit: cover;
@@ -69,5 +73,6 @@ export const TBOptionSvgWrapper = styled.div`
 `;
 export const TBOptionsContainer = styled.div`
   display: flex;
+  width: fit-content;
   gap: 16px;
 `;

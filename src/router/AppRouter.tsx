@@ -4,6 +4,7 @@ import ChatsBar from '@app/components/chats-bar';
 import ProfileBar from '@app/components/profile-bar';
 import useIsMobile from '@app/hooks/useIsMobile';
 import useModalOpen from '@app/hooks/useModalOpen';
+import useSignalRConnection from '@app/hooks/useSignalR';
 import ChatLayout from '@app/layout/chat-layout';
 import LoginLayout from '@app/layout/login-layout';
 import ProfileLayout from '@app/layout/profile-layout';
@@ -64,6 +65,7 @@ const AppRoutes = (): JSX.Element => {
 };
 const AppRouter = () => {
   useModalOpen();
+  useSignalRConnection();
 
   return (
     <BrowserRouter>

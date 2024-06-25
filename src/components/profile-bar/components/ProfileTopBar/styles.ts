@@ -2,13 +2,11 @@ import styled from 'styled-components';
 
 export const PTBContainer = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
   width: 100%;
   height: fit-content;
-  border-radius: 4px;
-  gap: 12px;
   user-select: none;
+  gap: 8px;
 `;
 
 export const PTBImage = styled.img`
@@ -23,6 +21,14 @@ export const PTBImage = styled.img`
   }
 `;
 
+export const PTBContentWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  width: calc(100vw - 68px);
+  gap: 12px;
+  overflow: hidden;
+`;
+
 export const PTBTextWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -35,7 +41,6 @@ export const PTBTextWrapper = styled.div`
 
 export const PTBUsername = styled.div`
   font-size: 16px;
-  height: fit-content;
   font-weight: 600;
   color: white;
   white-space: nowrap;
@@ -56,7 +61,7 @@ export const PTBEmail = styled.div`
 export const PTBModifyButtonWrapper = styled.div`
   display: flex;
   padding: 8px;
-  border-radius: 100%;
+  border-radius: 50%;
   background-color: #0f80d7;
   justify-content: center;
   align-items: center;

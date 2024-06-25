@@ -5,7 +5,7 @@ export const MNContainer = styled.div`
   justify-content: space-around;
   align-items: center;
   background: #232733;
-  padding: 12px 0;
+  height: 48px;
   position: fixed;
   bottom: 0;
   width: 100%;
