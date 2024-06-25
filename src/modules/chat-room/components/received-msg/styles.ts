@@ -5,6 +5,7 @@ export const RMWrapper = styled.div`
   justify-content: flex-start;
   align-items: flex-end;
   margin-top: 8px;
+  margin-right: 40px;
   gap: 8px;
 `;
 
@@ -43,7 +44,9 @@ export const RMTextContainer = styled.div`
   display: flex;
   flex-grow: 1;
   color: white;
+  word-break: break-word;
   overflow-wrap: break-word;
+  white-space: pre-wrap;
 `;
 
 export const RMDefaultImgTextContainer = styled.div`
@@ -57,22 +60,27 @@ export const RMDefaultImgTextContainer = styled.div`
 `;
 
 export const RMImgContainer = styled.img`
-  width: 300px;
-  max-height: 300px;
-  height: 100%;
   object-fit: cover;
   border-radius: 16px 16px 0px 0px;
+  height: 100%;
+  width: 100%;
+`;
+
+export const RMImgContainerWrapper = styled.div`
+  max-width: 300px;
+  height: 300px;
+  width: 100%;
 
   @media (max-width: 500px) {
-    width: 100%;
     aspect-ratio: 1/1;
+    height: 100%;
   }
 `;
 
 export const RMMsgTime = styled.div`
   display: flex;
   align-items: flex-end;
-  min-width: 30px;
+  min-width: 36px;
   padding-bottom: 2px;
   font-size: 12px;
   color: #a1aab3;
@@ -85,8 +93,10 @@ export const RMAvatar = styled.img`
 `;
 
 export const RMAvatarPlaceholder = styled.div`
+  min-width: 36px;
   width: 36px;
   height: 36px;
+  border-radius: 50%;
 `;
 
 export const RMTextWrapper = styled.div`

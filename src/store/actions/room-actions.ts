@@ -30,6 +30,7 @@ import IRoomResponse from '@app/types/responses/IRoomResponse';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import {
+  setChatBarLoadingRoomAction,
   setIsErrorRoomAction,
   setLoadingRoomAction,
   setRoomsAction,
@@ -76,7 +77,7 @@ export const addUsersToRoomAsyncAction = createAsyncThunk<
 export const fetchRoomsAsyncAction = createAsyncThunk<void, never, { state: RootState }>(
   ROOM__FETCH_ROOMS,
   async (__, thunkApi) => {
-    thunkApi.dispatch(setLoadingRoomAction(true));
+    thunkApi.dispatch(setChatBarLoadingRoomAction(true));
     try {
       const roomsResponse: IGetRoomsResponse = await getRoomsRequest();
       const rooms = mapRoomsResponseToRooms(roomsResponse);
@@ -84,7 +85,20 @@ export const fetchRoomsAsyncAction = createAsyncThunk<void, never, { state: Root
     } catch (err) {
       // swallow exception
     } finally {
-      thunkApi.dispatch(setLoadingRoomAction(false));
+      thunkApi.dispatch(setChatBarLoadingRoomAction(false));
+    }
+  }
+);
+
+export const fetchRoomsRealTimeAsyncAction = createAsyncThunk<void, never, { state: RootState }>(
+  ROOM__FETCH_ROOMS,
+  async (__, thunkApi) => {
+    try {
+      const roomsResponse: IGetRoomsResponse = await getRoomsRequest();
+      const rooms = mapRoomsResponseToRooms(roomsResponse);
+      thunkApi.dispatch(setRoomsAction(rooms));
+    } catch (err) {
+      // swallow exception
     }
   }
 );
@@ -144,16 +158,13 @@ export const removeUserFromRoomAsyncAction = createAsyncThunk<
 
 export const leaveRoomAsyncAction = createAsyncThunk<void, string, { state: RootState }>(
   ROOM__LEAVE,
-  async (roomId, thunkApi) => {
-    thunkApi.dispatch(setLoadingRoomAction(true));
+  async roomId => {
     try {
       await leaveRoomRequest(roomId);
     } catch (err) {
       if (err instanceof ApiException) {
         alertService.errorAlert({ title: err.data.detail });
       }
-    } finally {
-      thunkApi.dispatch(setLoadingRoomAction(false));
     }
   }
 );

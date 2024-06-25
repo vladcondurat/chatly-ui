@@ -1,6 +1,5 @@
 import { useAppDispatch } from '@app/hooks/store-hooks';
 import { deleteMessageAsyncAction } from '@app/store/actions/message-actions';
-import { fetchSelectedRoomAsyncAction } from '@app/store/actions/room-actions';
 import IMessage from '@app/types/message/IMessage';
 import formatTime from '@app/utils/formatTime';
 import { Pen, Trash } from 'lucide-react';
@@ -12,6 +11,7 @@ import {
   SMDefaultImgTextContainer,
   SMError,
   SMImgContainer,
+  SMImgContainerWrapper,
   SMLoading,
   SMMsgTime,
   SMOptions,
@@ -23,13 +23,12 @@ import {
 
 interface ISentMsgProps {
   message: IMessage;
-  roomId?: string;
   isLoading?: boolean;
   isError?: boolean;
   onEditMessage?: (message: IMessage) => void;
 }
 
-const SentMsg = ({ message, roomId, isLoading, isError, onEditMessage }: ISentMsgProps) => {
+const SentMsg = ({ message, isLoading, isError, onEditMessage }: ISentMsgProps) => {
   const dispatch = useAppDispatch();
 
   if (message === null) {
@@ -40,7 +39,6 @@ const SentMsg = ({ message, roomId, isLoading, isError, onEditMessage }: ISentMs
 
   const handleDelete = async () => {
     await dispatch(deleteMessageAsyncAction(message.id));
-    await dispatch(fetchSelectedRoomAsyncAction({ roomId: roomId }));
   };
 
   const handleUpdate = () => {
@@ -65,7 +63,9 @@ const SentMsg = ({ message, roomId, isLoading, isError, onEditMessage }: ISentMs
 
         {content.attachedImageUrl && (
           <SMContentWrapper>
-            <SMImgContainer src={content.attachedImageUrl} alt="attached" />
+            <SMImgContainerWrapper>
+              <SMImgContainer src={content.attachedImageUrl} alt="attached" />
+            </SMImgContainerWrapper>
             <SMContainerWithImg>
               {content.textContent ? (
                 <SMTextContainer>{content.textContent}</SMTextContainer>

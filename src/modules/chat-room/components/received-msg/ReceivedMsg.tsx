@@ -9,6 +9,7 @@ import {
   RMContentWrapper,
   RMDefaultImgTextContainer,
   RMImgContainer,
+  RMImgContainerWrapper,
   RMMsgTime,
   RMTextContainer,
   RMTextWrapper,
@@ -41,7 +42,9 @@ const ReceivedMsg = ({ message, isSameUser, isLastFromUser, isGroup }: ReceivedM
 
         {content.attachedImageUrl && (
           <RMContentWrapper>
-            <RMImgContainer src={content.attachedImageUrl} alt="attached" />
+            <RMImgContainerWrapper>
+              <RMImgContainer src={content.attachedImageUrl} alt="attached" />
+            </RMImgContainerWrapper>
             <RMContainerWithImg>
               {content.textContent ? (
                 <RMTextContainer>{content.textContent}</RMTextContainer>

@@ -56,15 +56,19 @@ export const SMTextContainer = styled.div`
 `;
 
 export const SMImgContainer = styled.img`
-  width: 300px;
-  max-height: 300px;
-  height: 100%;
   object-fit: cover;
   border-radius: 16px 16px 0px 0px;
+  height: 100%;
+  width: 100%;
+`;
+
+export const SMImgContainerWrapper = styled.div`
+  max-width: 300px;
+  height: 300px;
+  width: 100%;
 
   @media (max-width: 500px) {
-    width: 100%;
-    aspect-ratio: 1/1;
+    height: 100%;
   }
 `;
 
@@ -90,7 +94,7 @@ export const SMFileContainer = styled.div`
 export const SMMsgTime = styled.div`
   display: flex;
   align-items: flex-end;
-  min-width: 20px;
+  min-width: 24px;
   padding-bottom: 2px;
   font-size: 12px;
   color: #b7d9f3;

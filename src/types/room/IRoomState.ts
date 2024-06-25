@@ -5,6 +5,7 @@ interface IRoomState {
   rooms: IRoomCard[];
   selectedRoom: IRoom | null;
   loading: boolean;
+  chatBarLoading: boolean;
   isError: boolean;
 }
 

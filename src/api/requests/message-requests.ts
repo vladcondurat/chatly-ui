@@ -7,9 +7,6 @@ export const postMessageRequest = async (
   data: FormData,
   roomId: string
 ): Promise<Partial<IMessageResponse>> => {
-  for (const [key, value] of data.entries()) {
-    console.log(`${key}:`, value);
-  }
   const response: AxiosResponse<Partial<IMessageResponse>> = await getApi().post(
     `/messages/${roomId}`,
     data

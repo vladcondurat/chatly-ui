@@ -1,7 +1,9 @@
-import { Outlet, Navigate } from 'react-router-dom';
-import { getToken, AUTH_TOKEN } from '../services/storage-service';
+import { Navigate, Outlet } from 'react-router-dom';
+
+import { AUTH_TOKEN, getToken } from '../services/storage-service';
 
 const ProtectedRoutes = () => {
+  //authService
   const authToken = getToken(AUTH_TOKEN);
   return authToken ? <Outlet /> : <Navigate to="/login" />;
 };

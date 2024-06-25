@@ -6,13 +6,13 @@ import MobileNav from '@app/components/mobile-nav';
 import SearchBar from '@app/components/search-bar';
 import { useAppDispatch, useAppSelector } from '@app/hooks/store-hooks';
 import { fetchRoomsAsyncAction } from '@app/store/actions/room-actions';
-import { isLoadingRoomSelector, roomsSelector } from '@app/store/selectors/room-selectors';
+import { isChatBarLoadingRoomSelector, roomsSelector } from '@app/store/selectors/room-selectors';
 
 import { CBCellWrapper, CBContainer, CBNoChatsContainer, CBSearchBarWrapper } from './styles';
 
 const ChatsBar = () => {
   const dispatch = useAppDispatch();
-  const isLoading = useAppSelector(isLoadingRoomSelector);
+  const isChatBarLoading = useAppSelector(isChatBarLoadingRoomSelector);
   const chatCells = useAppSelector(roomsSelector);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -27,7 +27,7 @@ const ChatsBar = () => {
   }, [chatCells, searchQuery]);
 
   const renderChatCells = () => {
-    if (isLoading) {
+    if (isChatBarLoading) {
       return <LoadingSpinner />;
     }
     if (filteredChatCells.length > 0) {

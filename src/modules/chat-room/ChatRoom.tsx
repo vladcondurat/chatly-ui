@@ -2,7 +2,10 @@ import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '@app/hooks/store-hooks';
-import { fetchSelectedRoomAsyncAction } from '@app/store/actions/room-actions';
+import {
+  fetchRoomsRealTimeAsyncAction,
+  fetchSelectedRoomAsyncAction,
+} from '@app/store/actions/room-actions';
 import { fetchUserAsyncAction } from '@app/store/actions/user-actions';
 import {
   dataMessageSelector,
@@ -12,6 +15,7 @@ import {
 import { selectedRoomSelector } from '@app/store/selectors/room-selectors';
 import { dataUserSelector } from '@app/store/selectors/user-selectors';
 import IMessage from '@app/types/message/IMessage';
+import * as signalR from '@microsoft/signalr';
 
 import TopBar from './components/chat-top-bar';
 import MsgInput from './components/msg-input';
@@ -37,28 +41,47 @@ const ChatRoom = () => {
   };
 
   useEffect(() => {
+    const connection = new signalR.HubConnectionBuilder()
+      .withUrl('http://localhost:5003/messageHub')
+      .withAutomaticReconnect()
+      .build();
+
+    connection.on('ReceiveMessage', message => {
+      console.log('Message received:', message);
+      dispatch(fetchSelectedRoomAsyncAction({ roomId }));
+      dispatch(fetchRoomsRealTimeAsyncAction());
+    });
+
+    connection
+      .start()
+      .then(() => console.log('Connection started'))
+      .catch(err => console.error('Connection error: ', err));
+
+    return () => {
+      connection.stop();
+    };
+  }, [dispatch, roomId]);
+
+  useEffect(() => {
     dispatch(fetchSelectedRoomAsyncAction({ roomId }));
     dispatch(fetchUserAsyncAction());
   }, [dispatch, roomId]);
 
   useEffect(() => {
     scrollToLastMessage();
-  }, [room, sentMessage]);
+  }, [room]);
 
   useEffect(() => {
     if (!isLoadingMessage && !isErrorMessage && sentMessage) {
       setMessageToEdit(null);
-      // Temporary solution to reload the page after sending a message
-      window.location.reload();
     }
   }, [isLoadingMessage, isErrorMessage, sentMessage]);
 
   const handleMessageRender = () => {
     return (
       <>
-        {room &&
-          user &&
-          room.messages &&
+        {user &&
+          room?.messages &&
           room.messages.map((msg, index) => {
             const isSameUser = index > 0 && room.messages[index - 1].user.id === msg.user.id;
             const isLastFromUser =
@@ -66,12 +89,7 @@ const ChatRoom = () => {
               room.messages[index + 1].user.id !== msg.user.id;
 
             return msg.user.id === user.id ? (
-              <SentMsg
-                key={msg.id}
-                message={msg}
-                roomId={roomId}
-                onEditMessage={setMessageToEdit}
-              />
+              <SentMsg key={msg.id} message={msg} onEditMessage={setMessageToEdit} />
             ) : (
               <ReceivedMsg
                 key={msg.id}

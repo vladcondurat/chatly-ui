@@ -33,7 +33,7 @@ export const CRMsgContainer = styled.div`
   padding: 0 40px 0 40px;
 
   @media (max-width: 800px) {
-    padding: 0 20px 0 80px;
+    padding: 0 20px 0 20px;
   }
 
   @media (max-width: 500px) {
