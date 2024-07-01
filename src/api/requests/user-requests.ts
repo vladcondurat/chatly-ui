@@ -1,8 +1,7 @@
+import { getApi } from '@app/api/Api';
+import IUsers from '@app/types/responses/IUsersResponse';
+import IUser from '@app/types/user/IUser';
 import { AxiosResponse } from 'axios';
-
-import IUsers from '../../types/responses/IUsersResponse';
-import IUser from '../../types/user/IUser';
-import { getApi } from '../Api';
 
 export const updateUserRequest = async (user: FormData): Promise<Partial<IUser>> => {
   const response: AxiosResponse<Partial<IUser>> = await getApi().put('/users', user);

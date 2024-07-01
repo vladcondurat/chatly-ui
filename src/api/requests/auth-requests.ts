@@ -1,9 +1,8 @@
+import { getApi } from '@app/api/Api';
+import ILoginRequest from '@app/types/requests/ILoginRequest';
+import IRegisterRequest from '@app/types/requests/IRegisterRequest';
+import ILoginResponse from '@app/types/responses/ILoginResponse';
 import { AxiosResponse } from 'axios';
-
-import ILoginRequest from '../../types/requests/ILoginRequest';
-import IRegisterRequest from '../../types/requests/IRegisterRequest';
-import ILoginResponse from '../../types/responses/ILoginResponse';
-import { getApi } from '../Api';
 
 export const loginRequest = async (data: ILoginRequest): Promise<ILoginResponse> => {
   const response: AxiosResponse<ILoginResponse> = await getApi().post('/auth/login', data);

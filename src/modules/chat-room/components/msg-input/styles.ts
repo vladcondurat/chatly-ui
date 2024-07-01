@@ -8,6 +8,7 @@ export const MIContainer = styled.div`
 
 export const MIEditMessageLabel = styled.div`
   display: flex;
+  align-items: center;
   color: #8a8a8a;
   padding: 8px;
   gap: 16px;

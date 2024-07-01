@@ -5,7 +5,7 @@ import { getToken } from './storage-service';
 
 export const AUTH_TOKEN = 'access-token';
 
-const autoLogin = (): void => {
+const login = (): void => {
   const accessToken = getToken(AUTH_TOKEN);
 
   if (accessToken) {
@@ -14,4 +14,4 @@ const autoLogin = (): void => {
   }
 };
 
-export default autoLogin;
+export default login;
