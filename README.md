@@ -1,6 +1,49 @@
-# Chatly
+# Chatly UI
 
-A modern real-time chat application built with React and TypeScript, offering a seamless messaging experience with live communication features.
+A modern real-time chat application built with React and TypeScript, offering a seamless messaging experience with live communication features. Chatly provides a robust platform for real-time messaging, group conversations, and user interactions, all wrapped in a beautiful and intuitive user interface.
+
+## ✨ Features
+
+### Real-time Communication
+
+- Instant message delivery using SignalR
+- Live typing indicators
+- Online/offline status tracking
+- Message read receipts
+- Real-time notifications
+
+### Chat Functionality
+
+- One-on-one private messaging
+- Group chat support
+- Message history and persistence
+- File sharing capabilities
+- Message search and filtering
+- Message reactions and replies
+
+### User Experience
+
+- Modern, responsive design
+- Dark/Light theme support
+- Smooth animations and transitions
+- Mobile-first approach
+- Progressive Web App (PWA) support for offline capabilities
+
+### Security & Authentication
+
+- Secure user authentication
+- Protected routes
+- JWT token-based authorization
+- Environment-based configuration
+- Secure WebSocket connections
+
+### Performance
+
+- Optimized bundle size
+- Fast page loads with Vite
+- Efficient state management with Redux Toolkit
+- Type-safe development with TypeScript
+- Code splitting and lazy loading
 
 ## 🚀 Tech Stack
 
@@ -59,8 +102,8 @@ src/
 1. Clone the repository
 
 ```bash
-git clone [repository-url]
-cd chatly
+git clone https://github.com/vladcondurat/chatly-ui.git
+cd chatly-ui
 ```
 
 2. Install dependencies
